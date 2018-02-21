@@ -9,13 +9,15 @@
     </style>
 
     <!-- Theme de la Toolbar -->
-    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="ToolbarTheme" parent="AppTheme">
         <item name="android:textColorPrimary">@color/colorAccent</item>
     </style>
 
-    <!-- Theme du titre de la toolbar-->
+    <!-- Theme du titre de la toolbar
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">25sp</item>
         <item name="android:textStyle">italic</item>
-    </style>
+    </style>-->
+
+
 </resources>
