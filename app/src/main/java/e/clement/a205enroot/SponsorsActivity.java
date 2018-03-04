@@ -16,10 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-
-    private ImageView imageView205;
+public class SponsorsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -29,15 +26,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sponsors);
         // Configuration de la Toolbar
         this.configureToolbar();
         // Configuration du Drawer Layout
         this.configureDrawerLayout();
         // Configuration de la navigation View
         this.configureNavigationView();
-        // Configuration de l'image View
-        this.configureImageView();
+
         // Configuration du TabLayout
         this.configureTabLayout();
     }
@@ -101,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-        // Méthodes de configuration appelée dans le "onCreate" de l'activité
+    // Méthodes de configuration appelée dans le "onCreate" de l'activité
     private void configureToolbar(){
         // Récupère la Toolbar View à partir du Layout
         this.toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -109,36 +105,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
     }
 
-    private void configureImageView(){
-        // Sérialise l'ImageView
-        this.imageView205 = (ImageView) this.findViewById(R.id.imageView);
-        // Attache d'un listener
-        imageView205.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Démarre la détail activity
-                launchDetailActivity();
-            }
-        });
-    }
-
-    private void launchDetailActivity(){
-        Intent myIntent = new Intent(MainActivity.this,DetailActivity.class);
-        this.startActivity(myIntent);
-    }
-
     private void launchActivity(int tab){
-        Intent myIntent = new Intent(MainActivity.this,MainActivity.class);;
+        Intent myIntent = new Intent(SponsorsActivity.this,MainActivity.class);;
         switch (tab){
 
             case 0:
-                myIntent = new Intent(MainActivity.this,MainActivity.class);
+                myIntent = new Intent(SponsorsActivity.this,MainActivity.class);
                 break;
             case 1:
-                myIntent = new Intent(MainActivity.this,TrophyActivity.class);
+                myIntent = new Intent(SponsorsActivity.this,TrophyActivity.class);
                 break;
             case 2:
-                myIntent = new Intent(MainActivity.this,SponsorsActivity.class);
+                myIntent = new Intent(SponsorsActivity.this,SponsorsActivity.class);
                 break;
             case 3:
                 break;
@@ -173,8 +151,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onTabSelected(TabLayout.Tab tab) {
                 int pos = tab.getPosition();
                 //switch (pos){
-                    //case 0:
-                        launchActivity(pos);
+                //case 0:
+                launchActivity(pos);
                         /*Toast.makeText(getApplicationContext(),"1",Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
