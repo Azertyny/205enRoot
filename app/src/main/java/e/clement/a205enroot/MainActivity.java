@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.Toast;
 
 
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private TabLayout tabLayout;
+    //private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +39,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Configuration de la navigation View
         this.configureNavigationView();
         // Configuration de l'image View
-        this.configureImageView();
+            //this.configureImageView();
         // Configuration du TabLayout
-        this.configureTabLayout();
+            //this.configureTabLayout();
+        // Configuration du ViewPager
+        this.configureViewPagerAndTabs();
     }
 
     @Override
@@ -109,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
     }
 
-    private void configureImageView(){
+    /*private void configureImageView(){
         // Sérialise l'ImageView
         this.imageView205 = (ImageView) this.findViewById(R.id.imageView);
         // Attache d'un listener
@@ -125,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void launchDetailActivity(){
         Intent myIntent = new Intent(MainActivity.this,DetailActivity.class);
         this.startActivity(myIntent);
-    }
+    }*/
 
     private void launchActivity(int tab){
         Intent myIntent = new Intent(MainActivity.this,MainActivity.class);;
@@ -135,10 +139,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 myIntent = new Intent(MainActivity.this,MainActivity.class);
                 break;
             case 1:
-                myIntent = new Intent(MainActivity.this,TrophyActivity.class);
+
                 break;
             case 2:
-                myIntent = new Intent(MainActivity.this,SponsorsActivity.class);
+
                 break;
             case 3:
                 break;
@@ -161,46 +165,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    private void configureTabLayout(){
-        this.tabLayout = (TabLayout) findViewById(R.id.activity_main_tablayout);
-        /*tabLayout.addTab(tabLayout.newTab().setText("1"));
-        tabLayout.addTab(tabLayout.newTab().setText("2"));
-        tabLayout.addTab(tabLayout.newTab().setText("3"));
-        tabLayout.addTab(tabLayout.newTab().setText("4"));
-        tabLayout.addTab(tabLayout.newTab().setText("5"));*/
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int pos = tab.getPosition();
-                //switch (pos){
-                    //case 0:
-                        launchActivity(pos);
-                        /*Toast.makeText(getApplicationContext(),"1",Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        Toast.makeText(getApplicationContext(),"2",Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        Toast.makeText(getApplicationContext(),"3",Toast.LENGTH_SHORT).show();
-                        break;
-                    case 3:
-                        Toast.makeText(getApplicationContext(),"4",Toast.LENGTH_SHORT).show();
-                        break;
-                    case 4:
-                        Toast.makeText(getApplicationContext(),"5",Toast.LENGTH_SHORT).show();
-                        break;*/
-                //}
-            }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
 
-            }
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+    /*
+    // Méthode faisant le lien entre les différentes classes ("Coller" le viewpager et le fragment)
+    private void configureViewPager(){
+        // Obtention du ViewPager à partir du Layout
+        ViewPager pager = (ViewPager)findViewById(R.id.activity_main_viewpager);
+        // Configure l'adapteur et les "colle"
+        pager.setAdapter(new PageAdapter(getSupportFragmentManager(),getResources().getIntArray(R.array.colorPagesViewPager)){});
+    }*/
 
-            }
-        });
+    // Méthode faisant le lien entre le ViewPager et le TabLayout
+    private void configureViewPagerAndTabs(){
+        // Obtention du ViewPager à partir du Layout
+        ViewPager pager = (ViewPager)findViewById(R.id.activity_main_viewpager);
+        // Configure l'adapteur et les "colle"
+        pager.setAdapter(new PageAdapter(getSupportFragmentManager(),getResources().getIntArray(R.array.colorPagesViewPager)){});
+
+        // Récupère le Tablayout du Layout
+        TabLayout tabs = (TabLayout) findViewById(R.id.activity_main_tablayout);
+        // Colle le TabLayout et le ViewPager
+        tabs.setupWithViewPager(pager);
+        // Design
+        tabs.setTabMode(TabLayout.MODE_FIXED);
     }
 }

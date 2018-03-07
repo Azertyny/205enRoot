@@ -28,8 +28,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".TrophyActivity" />
-        <activity android:name=".SponsorsActivity"></activity>
     </application>
 
 </manifest>
