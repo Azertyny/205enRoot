@@ -10,8 +10,9 @@
 <!-- Créer un fichier dimen.xml dans /res/values -->
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/logo_205_trophee_2018"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFF"
+        app:srcCompat="@drawable/logo_asso"/>
 
 </LinearLayout>

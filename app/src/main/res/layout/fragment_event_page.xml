@@ -1,0 +1,49 @@
+<LinearLayout android:id="@+id/fragment_page_event_rootview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="e.clement.a205enroot.MainActivity"
+    android:gravity="center"
+    android:background="#EDD9CF"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Ajout du TabLayout propre au fragment Event -->
+    <android.support.design.widget.TabLayout
+        android:id="@+id/fragment_event_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorPrimaryDark"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="@color/colorPrimary">
+        <android.support.design.widget.TabItem
+            android:id="@+id/tablayout_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tablayout_asso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tablayout_asso2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3" />
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/fragment_event_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
+</LinearLayout>

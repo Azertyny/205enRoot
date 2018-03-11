@@ -24,27 +24,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <android.support.v4.view.ViewPager
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <e.clement.a205enroot.CustomViewPager
             android:id="@+id/activity_main_viewpager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
-        <!--
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="300dip"
-                    android:layout_height="200dip"
-                    android:src="@drawable/logo_205_trophee_2018" />
-            </LinearLayout>
-            -->
-        </android.support.v4.view.ViewPager>
-
-
+            android:layout_weight="1"/>
 
 
         <!-- Implémentation du TabLayout -->
@@ -57,38 +41,8 @@
             app:tabIndicatorColor="@color/colorPrimaryDark"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/colorAccent"
-            app:tabTextColor="@color/colorPrimary">
+            app:tabTextColor="@color/colorPrimary"/>
 
-            <android.support.design.widget.TabItem
-                android:id="@+id/tablayout_news"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="1" />
-
-            <android.support.design.widget.TabItem
-                android:id="@+id/tablayout_trophy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="2" />
-
-            <android.support.design.widget.TabItem
-                android:id="@+id/tablayout_sponsors"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="3" />
-
-            <android.support.design.widget.TabItem
-                android:id="@+id/tablayout_maps"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="4" />
-
-            <android.support.design.widget.TabItem
-                android:id="@+id/tablayout_gallery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="5" />
-        </android.support.design.widget.TabLayout>
 
 
     </LinearLayout>
@@ -101,7 +55,9 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/activity_main_nav_header"
-        app:menu="@menu/activity_main_menu_drawer" />
+        app:menu="@menu/activity_main_menu_drawer"
+        android:background="#FFFF"
+        app:itemTextColor="@color/colorAccent"/>
 
 
 </android.support.v4.widget.DrawerLayout>

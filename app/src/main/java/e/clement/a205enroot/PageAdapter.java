@@ -9,15 +9,11 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 
 public class PageAdapter extends FragmentPagerAdapter{
-    // Tableau des couleurs passant par PageFragment
-    private int[] colors;
 
 
     // Constructeur par défaut
-    public PageAdapter(FragmentManager mgr, int[] colors){
+    public PageAdapter(FragmentManager mgr){
         super(mgr);
-        this.colors = colors;
-
     }
 
     @Override
@@ -28,12 +24,38 @@ public class PageAdapter extends FragmentPagerAdapter{
     @Override
     public Fragment getItem(int position){
         // Page à renvoyer
-        return(PageFragment.newInstance(position,this.colors[position]));
+        switch (position){
+            case 0:
+                return NewsPageFragment.newInstance();
+            case 1:
+                return EventPageFragment.newInstance();
+            case 2:
+                return GalleryPageFragment.newInstance();
+            case 3:
+                return MapsPageFragment.newInstance();
+            case 4:
+                return SponsorsPageFragment.newInstance();
+            default:
+                return null;
+        }
     }
 
     // Retourne le "titre" de chaque page du viewPager
-    @Override
+   /* @Override
     public CharSequence getPageTitle(int position){
-        return "" + position;
-    }
+        switch (position){
+            case 0:
+                return "1";
+            case 1:
+                return "2";
+            case 2:
+                return "3";
+            case 3:
+                return "4";
+            case 4:
+                return "5";
+            default:
+                return null;
+        }
+    }*/
 }
