@@ -5,6 +5,23 @@
     tools:showIn="navigation_view"
     >
 
+    <item
+        android:id="@+id/activity_main_drawer_games"
+        android:icon="@drawable/ic_videogame_asset_black_24dp"
+        android:title="@string/jeu"/>
+
+    <item
+        android:id="@+id/activity_main_drawer_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/preferences"/>
+
+    <item
+        android:id="@+id/activity_main_drawer_contact"
+        android:icon="@drawable/ic_perm_contact_calendar_black_24dp"
+        android:title="@string/contact"/>
+
+
+    <!--
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/activity_main_drawer_games"
@@ -26,5 +43,5 @@
             </group>
         </menu>
     </item>
-
+ -->
 </menu>

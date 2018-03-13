@@ -71,12 +71,12 @@ public class EventPageFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return MapsPageFragment.newInstance();
+                    return TrophyEventPageFragment.newInstance();
 
                 case 1:
-                    return SponsorsPageFragment.newInstance();
+                    return RootEventPageFragment.newInstance();
                 case 2:
-                    return MapsPageFragment.newInstance();
+                    return CharityEventPageFragment.newInstance();
                 default:
                     return null;
             }
@@ -86,11 +86,11 @@ public class EventPageFragment extends Fragment {
         public CharSequence getPageTitle(int position){
             switch (position){
                 case 0:
-                    return "1";
+                    return getString(R.string.trophee);
                 case 1:
-                    return "2";
+                    return getString(R.string.assoRoot);
                 case 2:
-                    return "3";
+                    return getString(R.string.assoMaroc);
 
                 default:
                     return null;

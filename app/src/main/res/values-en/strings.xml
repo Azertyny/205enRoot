@@ -6,4 +6,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="cafe">Give us a cup of Tea ;)</string>
+
+    <string name="trophee">The Event</string>
+    <string name="assoRoot">Our association</string>
+    <string name="assoMaroc">Charity</string>
+
+    <string name="jeu">Flappy205</string>
+    <string name="preferences">Settings</string>
+    <string name="contact">Contact us</string>
+
 </resources>

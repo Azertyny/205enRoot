@@ -6,4 +6,14 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="cafe">Offrez-nous un café ;)</string>
+
+    <string name="trophee">205 Trophée</string>
+    <string name="assoRoot">205 en ROOT</string>
+    <string name="assoMaroc">L\'humanitaire</string>
+
+    <string name="jeu">Flappy205</string>
+    <string name="preferences">Préférences</string>
+    <string name="contact">Nous contacter</string>
+
+
 </resources>

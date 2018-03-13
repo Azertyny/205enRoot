@@ -1,6 +1,10 @@
 package e.clement.a205enroot;
 
 import android.content.Intent;
+import android.content.pm.LabeledIntent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -20,49 +24,51 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.lang.Boolean.FALSE;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
 
-    private Toolbar toolbar;
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    protected TabLayout tabs;
+    private Toolbar toolbar;                // Barre supérieure
+    private DrawerLayout drawerLayout;      // Page latérale déroulante
+    private NavigationView navigationView;  // Menu du DrawerLayout
+    protected TabLayout tabs;               // Barre de navigation inférieure
 
-    protected LinearLayout.LayoutParams layoutParamsSelected, layoutParamsDefault;
-    protected View viewHome, viewEvent, viewGallery, viewMaps, viewSponsors;
+    protected LinearLayout.LayoutParams layoutParamsSelected, layoutParamsDefault; // Gestion de la selection ou non des icônes de la barre de navigation
+    protected View viewHome, viewEvent, viewGallery, viewMaps, viewSponsors; // Vue correspondant à chaque icônes de la barre de navigation
 
-    private int[] tabIcons = {
+    private int[] tabIcons = {          // Layout de chaque icône (Selector permettant la gestion d'état)
             R.layout.ic_tab_home,
             R.layout.ic_tab_event,
             R.layout.ic_tab_gallery,
             R.layout.ic_tab_maps,
             R.layout.ic_tab_sponsors
-
     };
 
+    protected String[] mails = {"foyart@et.esiea.fr","hanna@et.esiea.fr"};
+
     protected void onCreate(Bundle savedInstanceState) {
+        // Toutes les méthodes de configuration des éléments graphique sont appelées ici :
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         // Configuration de la Toolbar
         this.configureToolbar();
         // Configuration du Drawer Layout
         this.configureDrawerLayout();
         // Configuration de la navigation View
         this.configureNavigationView();
-        // Configuration de l'image View
-            //this.configureImageView();
-        // Configuration du TabLayout
-            //this.configureTabLayout();
         // Configuration du ViewPager
         this.configureViewPagerAndTabs();
     }
 
     @Override
     public void onBackPressed(){
-        // Gère la fermeture du menu
+        // Gère la fermeture du DrawerLayout
         if(this.drawerLayout.isDrawerOpen(GravityCompat.START)){
             this.drawerLayout.closeDrawer(GravityCompat.START);
         }else{
@@ -72,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Gère la sélection d'un item dans le menu
+        // Gère la sélection d'un item dans le menu du DrawerLayout
         int id = item.getItemId();
         switch (id){
             case R.id.activity_main_drawer_games:
@@ -83,133 +89,86 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.activity_main_drawer_contact:
                 // Code de lancement d'une application tierce (SMS,Appel,Mail)
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:"));
+                intent.putExtra(Intent.EXTRA_EMAIL, mails);
+
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
                 break;
         }
         this.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
-
-    // Affiche le menu (Icônes) et l'ajoute à la Toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
+        // Récupère le Layout du menu de la Toolbar et l'affiche
         getMenuInflater().inflate(R.menu.menu_activity_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        // Gère les actions sur les items du menu contenu dans le fichier XML "menu_activity_main"
+        // Gère les actions sur les items du menu de la Toolbar
         switch (item.getItemId()){
             case R.id.menu_activity_main_cafe:
-
-                // ... Code pour les paramètres
-
-                Toast.makeText(this, getString(R.string.cafe), Toast.LENGTH_SHORT).show();
+                // Faire un don, ouverture du navigateur web par défaut du téléphone
+                String url_cagnote = "https://www.leetchi.com//c/association-205-en-root";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url_cagnote));
+                startActivity(intent);
+                Toast.makeText(this, getString(R.string.cafe), Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-
-        // Méthodes de configuration appelée dans le "onCreate" de l'activité
     private void configureToolbar(){
         // Récupère la Toolbar View à partir du Layout
-        this.toolbar = (Toolbar) findViewById(R.id.toolbar);
+        this.toolbar = findViewById(R.id.toolbar);
         // Active la Toolbar
         setSupportActionBar(toolbar);
     }
 
-    /*private void configureImageView(){
-        // Sérialise l'ImageView
-        this.imageView205 = (ImageView) this.findViewById(R.id.imageView);
-        // Attache d'un listener
-        imageView205.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Démarre la détail activity
-                launchDetailActivity();
-            }
-        });
-    }
-
-    private void launchDetailActivity(){
-        Intent myIntent = new Intent(MainActivity.this,DetailActivity.class);
-        this.startActivity(myIntent);
-    }*/
-
     private void configureDrawerLayout() {
-        this.drawerLayout = (DrawerLayout)findViewById(R.id.activity_main_drawer_layout);
+        // Récupère le layout du DrawerLayout
+        this.drawerLayout = findViewById(R.id.activity_main_drawer_layout);
+        // Instancie la gestion du listener sur le drawer
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
     }
 
     private void configureNavigationView() {
-        this.navigationView = (NavigationView) findViewById(R.id.activity_main_nav_view);
+        this.navigationView = findViewById(R.id.activity_main_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-
-
-
-    /*
-    // Méthode faisant le lien entre les différentes classes ("Coller" le viewpager et le fragment)
-    private void configureViewPager(){
-        // Obtention du ViewPager à partir du Layout
-        ViewPager pager = (ViewPager)findViewById(R.id.activity_main_viewpager);
-        // Configure l'adapteur et les "colle"
-        pager.setAdapter(new PageAdapter(getSupportFragmentManager(),getResources().getIntArray(R.array.colorPagesViewPager)){});
-    }*/
-
-    // Méthode faisant le lien entre le ViewPager et le TabLayout
     private void configureViewPagerAndTabs(){
         // Obtention du ViewPager à partir du Layout
-        ViewPager pager = (ViewPager)findViewById(R.id.activity_main_viewpager);
+        ViewPager pager = findViewById(R.id.activity_main_viewpager);
 
-        // Configure l'adapteur et les "colle"
+        // Récupération de l'adapteur et définit le fragment à afficher au démarrage
         pager.setAdapter(new PageAdapter(getSupportFragmentManager()){});
         pager.setCurrentItem(0);
 
-        // Récupère le Tablayout du Layout
-        tabs = (TabLayout) findViewById(R.id.activity_main_tablayout);
+        // Récupère le layout du TanLayout
+        tabs = findViewById(R.id.activity_main_tablayout);
 
-        // Colle le TabLayout et le ViewPager
+        // "Colle" le TabLayout et le ViewPager ensemble
         tabs.setupWithViewPager(pager);
-
-        /*for(int i = 0; i <tabs.getTabCount();i++){
-        tabs.getTabAt(i).setIcon(R.drawable.ic_home_white_24dp);}*/
-
-        // Design
         tabs.setTabMode(TabLayout.MODE_FIXED);
 
-        //
+        // Initialise les icônes et leur gestion
         initialiseLayoutParams();
         setupTabIcons();
-
-
-    }
-    private void initialiseLayoutParams() {
-        layoutParamsSelected = new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.value_32dp), getResources().getDimensionPixelSize(R.dimen.value_32dp));
-        layoutParamsDefault = new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.value_30dp), getResources().getDimensionPixelSize(R.dimen.value_30dp));
-    }
-
-    protected void changeTabSelected(View view)
-    {
-        //view.LayoutParameters = layoutParamsSelected;
-        view.setLayoutParams(layoutParamsSelected);
-    }
-
-    private void changeTabDefault(View view)
-    {
-        //view.LayoutParameters = layoutParamsDefault;
-        view.setLayoutParams(layoutParamsDefault);
     }
 
     @SuppressWarnings("ConstantConditions")
     private void setupTabIcons() {
-        // Etape 1 : On génère les vues de nos différents composants de TabLayout, à partir du fichier custom_tab_icon
+        // Création des vues des différents icônes destinés à être dans le TabLayout
         viewHome = getLayoutInflater().inflate(R.layout.custom_tab_icon, tabs, false);
         viewHome.findViewById(R.id.icon).setBackgroundResource(tabIcons[0]);
         viewHome.setLayoutParams(layoutParamsSelected);
@@ -230,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewSponsors.findViewById(R.id.icon).setBackgroundResource(tabIcons[4]);
         viewSponsors.setLayoutParams(layoutParamsDefault);
 
-        // Etape 2 : On ajoute les différentes vues créées ci-dessus dans notre TabLayout
+        // Ajout des vues dans le TabLayout
         if (tabs != null) {
             tabs.getTabAt(0).setCustomView(viewHome);
             tabs.getTabAt(1).setCustomView(viewEvent);
@@ -238,19 +197,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             tabs.getTabAt(3).setCustomView(viewMaps);
             tabs.getTabAt(4).setCustomView(viewSponsors);
         }
-        // Etape 3 : On crée le listener pour gérer les interactions avec les utilisateurs
+        // Listeners du tabLayout
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 changeTabSelected(tab.getCustomView());
             }
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                changeTabDefault(tab.getCustomView());
-            }
+            public void onTabUnselected(TabLayout.Tab tab) {changeTabDefault(tab.getCustomView());}
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
     }
+    private void initialiseLayoutParams() {
+        // Définit la taille des icônes en fonction de leur état
+        layoutParamsSelected = new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.value_32dp), getResources().getDimensionPixelSize(R.dimen.value_32dp));
+        layoutParamsDefault = new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.value_30dp), getResources().getDimensionPixelSize(R.dimen.value_30dp));
+    }
+
+    protected void changeTabSelected(View view)
+            // Gestion de l'état de l'icône lorsqu'il est sélectionné
+    {view.setLayoutParams(layoutParamsSelected);}
+
+    private void changeTabDefault(View view)
+            // Gestion de l'état de l'icône lorsqu'il est désélectionné
+    {view.setLayoutParams(layoutParamsDefault);}
 }
