@@ -20,7 +20,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -30,9 +32,9 @@ import java.util.List;
 import static java.lang.Boolean.FALSE;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    //ProgressBar progressBar;
     private Toolbar toolbar;                // Barre supérieure
     private DrawerLayout drawerLayout;      // Page latérale déroulante
     private NavigationView navigationView;  // Menu du DrawerLayout
@@ -223,4 +225,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void changeTabDefault(View view)
             // Gestion de l'état de l'icône lorsqu'il est désélectionné
     {view.setLayoutParams(layoutParamsDefault);}
+
+
+
+
+
 }
