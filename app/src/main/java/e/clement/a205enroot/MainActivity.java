@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.configureNavigationView();
         // Configuration du ViewPager
         this.configureViewPagerAndTabs();
+        // Appels réseaux
+        //this.excecuteHttpRetrofit();
     }
 
     @Override
@@ -226,6 +229,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // Gestion de l'état de l'icône lorsqu'il est désélectionné
     {view.setLayoutParams(layoutParamsDefault);}
 
+
+    //##################################
+    // Appels réseaux
 
 
 

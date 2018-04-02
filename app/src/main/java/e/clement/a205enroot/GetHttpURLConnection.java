@@ -12,6 +12,8 @@ import java.net.URL;
  * Created by Clément on 25/03/2018.
  */
 
+
+// Classe 'utils' permettant de faire des requêtes HTTP de type GET
 public class GetHttpURLConnection {
     public static String startHttpRequest(String urlString){
         StringBuilder stringBuilder = new StringBuilder();
@@ -20,7 +22,7 @@ public class GetHttpURLConnection {
             // Déclaration de la connexion par URL
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            // Ouverture du stream
+            // Ouverture du stream (canal)
             conn.connect();
             InputStream in = conn.getInputStream();
             // Télécharge et interprète la chaîne de réponse
