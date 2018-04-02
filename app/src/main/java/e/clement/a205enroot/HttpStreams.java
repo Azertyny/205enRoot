@@ -4,7 +4,11 @@ import android.support.annotation.Nullable;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,6 +17,29 @@ import retrofit2.Response;
  * Created by Clément on 02/04/2018.
  */
 
+
+public class HttpStreams {
+    public static Observable<List<NewsArticles>> streamFetchNewsFollowing(String news){
+        HttpService httpService = HttpService.retrofit.create(HttpService.class);
+        return httpService.getFollowing(news)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(10, TimeUnit.SECONDS);
+
+    }
+    public static Observable<List<SponsorsList>> streamFetchSponsorsFollowing(String sponsors){
+        HttpService httpService = HttpService.retrofit.create(HttpService.class);
+        return httpService.getSponsors(sponsors)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(10, TimeUnit.SECONDS);
+    }
+
+
+}
+
+
+/*
 public class HttpCalls {
     // 1 - Creating a callback
     public interface Callbacks {
@@ -48,4 +75,4 @@ public class HttpCalls {
             }
         });
     }
-}
+}*/
