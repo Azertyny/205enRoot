@@ -16,7 +16,8 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
     //private TextView textView;
 
 
-    @BindView(R.id.news_page_item_title) TextView textView;
+    @BindView(R.id.news_page_item_title) TextView title;
+    @BindView(R.id.news_page_item_content) TextView content;
     public NewsViewHolder(View itemView) {
         super(itemView);
         //itemView = (TextView) itemView.findViewById(R.id.news_page_item_title);
@@ -24,6 +25,7 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void updateWithNewsTitle(NewsArticles news){
-        this.textView.setText(news.getTitre());
+        this.title.setText(news.getTitre());
+        this.content.setText(news.getContenu());
     }
 }

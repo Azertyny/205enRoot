@@ -42,4 +42,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
         return this.news.size();
     }
 
+    // Méthode publique permettant de gérer le numéro de la news sur laquelle l'utilisateur a cliqué
+    public NewsArticles getNews(int position){
+        return this.news.get(position);
+    }
+
 }

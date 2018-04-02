@@ -4,6 +4,7 @@ package e.clement.a205enroot;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
     }*/
     //RecyclerView recyclerView;
     @BindView(R.id.fragment_news_recycler_view) RecyclerView recyclerView; // 1 - Declare RecyclerView
+    @BindView(R.id.fragment_main_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
     // Varaibles de gestion des données
     private DisposableObserver<List<NewsArticles>> disposable;
     private List<NewsArticles> newsArticles;
@@ -58,7 +60,8 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
 
         this.configureRecyclerView();
         this.excecuteHttpRetrofit();
-
+        this.configureSwipeRefreshLayout();
+        this.configureOnclickRecyclerView();
         // Inflate the layout for this fragment
         return view; //inflater.inflate(R.layout.fragment_news_page, container, false);
     }
@@ -127,7 +130,33 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
         //textView.setText(response);
     //}
 
+    // 2 - Configure the SwipeRefreshLayout
+
+    private void configureSwipeRefreshLayout(){
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                excecuteHttpRetrofit();
+            }
+        });
+    }
+
+    private void configureOnclickRecyclerView(){
+        ItemClickSupport.addTo(recyclerView, R.layout.news_page_item)
+                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                        Log.e("TAG", "Position : "+position);
+                        NewsArticles news = adapter.getNews(position);
+                        // Ouvrir détail activity
+
+                    }
+                });
+    }
+
     private void updateUI(List<NewsArticles> articles){
+        swipeRefreshLayout.setRefreshing(false);
+        newsArticles.clear();
         newsArticles.addAll(articles);
         adapter.notifyDataSetChanged();
 
