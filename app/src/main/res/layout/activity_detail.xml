@@ -4,22 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="e.clement.a205enroot.DetailActivity">
 
     <!-- Importation de la Toolbar -->
+
     <include
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <LinearLayout
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/frame_layout_detail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="300dip"
-            android:layout_height="200dip"
-            android:src="@drawable/logo_205_trophee_2018"/>
-    </LinearLayout>
-    
+        android:layout_height="match_parent"/>
+
+
 </LinearLayout>

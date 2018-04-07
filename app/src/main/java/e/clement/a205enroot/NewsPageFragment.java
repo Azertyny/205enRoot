@@ -1,6 +1,7 @@
 package e.clement.a205enroot;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -37,7 +38,18 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
     // Varaibles de gestion des données
     private DisposableObserver<List<NewsArticles>> disposable;
     private List<NewsArticles> newsArticles;
-    private NewsAdapter adapter;
+    public NewsAdapter adapter;
+
+
+    // Ajout de l'interface de Callback
+    private OnItemClickedListener mCallback;
+
+
+    public interface OnItemClickedListener{
+        public void onItemClicked(NewsArticles news);
+    }
+
+
 
     // Méthode de création d'une nouvelle instance de PageFragment (ajout des datas au bundle si nécessaire)
     public static NewsPageFragment newInstance(){
@@ -149,7 +161,8 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
                         Log.e("TAG", "Position : "+position);
                         NewsArticles news = adapter.getNews(position);
                         // Ouvrir détail activity
-
+                        //Toast.makeText(NewsPageFragment.super.getContext(), "Ouverture de la news : "+position, Toast.LENGTH_SHORT).show();
+                        mCallback.onItemClicked(news);
                     }
                 });
     }
@@ -159,13 +172,34 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
         newsArticles.clear();
         newsArticles.addAll(articles);
         adapter.notifyDataSetChanged();
-
         /*StringBuilder stringBuilder = new StringBuilder();
         for (NewsArticles titre : news){
             stringBuilder.append("-"+titre.getTitre()+"\n");
         }
         updateUIWhenStopingHTTPRequest(stringBuilder.toString());*/
     }
+
+    //###### Ajout de l'interface de callback pour gérer le click de la RecyclerView dans MainActivity
+
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        this.createCallbackToParentActivity();
+    }
+
+    private void createCallbackToParentActivity(){
+        try{
+            mCallback = (OnItemClickedListener) getActivity();
+
+        }catch (ClassCastException e){
+            throw new ClassCastException(e.toString()+ " implementer in listener");
+        }
+    }
+
+
+
+
+    //##########################################################################
 /*
     private void excecuteHttpRetrofit() {
         //this.updateUIWhenStartingHTTPRequest();

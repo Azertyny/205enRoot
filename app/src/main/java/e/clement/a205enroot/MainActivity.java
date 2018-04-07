@@ -5,6 +5,7 @@ import android.content.pm.LabeledIntent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -15,6 +16,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -27,13 +29,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Boolean.FALSE;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,NewsPageFragment.OnItemClickedListener {
 
     //ProgressBar progressBar;
     private Toolbar toolbar;                // Barre supérieure
@@ -230,10 +233,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     {view.setLayoutParams(layoutParamsDefault);}
 
 
+    //####################Implémentation de l'interface de Callback
+
+    @Override
+    public void onItemClicked(NewsArticles news){
+        Log.e(getClass().getSimpleName(),"Button "+news.getTitre()+" clicked !");
+
+        Intent i = new Intent(this, DetailActivity.class);
+        i.putExtra(DetailActivity.ITEM_NEWS,news);
+        startActivity(i);
+    }
+    //#############################################################
+
+
+
+
     //##################################
-    // Appels réseaux
-
-
-
+    // Appels réseaux à implémenter ici dans le futur
 
 }
