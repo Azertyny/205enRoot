@@ -41,9 +41,9 @@ public class DetailFragment extends Fragment {
     }
 
     public void updateUI(NewsArticles news){
-        this.title.setText(news.getTitre());
-        this.content.setText(news.getContenu());
-        Glide.with(this).load("http://192.168.1.15/application/fr/logo_asso").into(image);
+        this.title.setText(news.getTitle());
+        this.content.setText(news.getContent());
+        Glide.with(this).load(news.getUrl()).into(image);
     }
 
 }

@@ -7,18 +7,18 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Clément on 02/04/2018.
+ * Created by Clément on 07/04/2018.
  */
 
-// Modèle de traitement JSON pour les articles
 
-public class NewsArticles implements Parcelable{
-    @SerializedName("title")
+public class SponsorsArticles implements Parcelable {
+
+    @SerializedName("name")
     @Expose
-    private String title;
-    @SerializedName("content")
+    private String name;
+    @SerializedName("sponsorDescription")
     @Expose
-    private String content;
+    private String sponsorDescription;
     @SerializedName("date")
     @Expose
     private String date;
@@ -33,20 +33,20 @@ public class NewsArticles implements Parcelable{
     private String legend;
 
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getContent() {
-        return content;
+    public String getSponsorDescription() {
+        return sponsorDescription;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setSponsorDescription(String sponsorDescription) {
+        this.sponsorDescription = sponsorDescription;
     }
 
     public String getDate() {
@@ -90,34 +90,36 @@ public class NewsArticles implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(title);
-        dest.writeValue(content);
+        dest.writeValue(name);
+        dest.writeValue(sponsorDescription);
         dest.writeValue(date);
         dest.writeValue(url);
         dest.writeValue(description);
         dest.writeValue(legend);
     }
 
-    private NewsArticles(Parcel in){
-        this.title = ((String) in.readValue((String.class.getClassLoader())));
-        this.content = ((String) in.readValue((String.class.getClassLoader())));
+    protected SponsorsArticles(Parcel in) {
+        this.name = ((String) in.readValue((String.class.getClassLoader())));
+        this.sponsorDescription = ((String) in.readValue((String.class.getClassLoader())));
         this.date = ((String) in.readValue((String.class.getClassLoader())));
         this.url = ((String) in.readValue((String.class.getClassLoader())));
         this.description = ((String) in.readValue((String.class.getClassLoader())));
         this.legend = ((String) in.readValue((String.class.getClassLoader())));
     }
 
-    public static final Parcelable.Creator<NewsArticles> CREATOR = new Parcelable.Creator<NewsArticles>() {
+    public static final Parcelable.Creator<SponsorsArticles> CREATOR = new Parcelable.Creator<SponsorsArticles>() {
 
         @Override
-        public NewsArticles createFromParcel(Parcel source) {
-            return new NewsArticles(source);
+        public SponsorsArticles createFromParcel(Parcel source) {
+            return new SponsorsArticles(source);
         }
 
         @Override
-        public NewsArticles[] newArray(int size) {
-            return new NewsArticles[size];
+        public SponsorsArticles[] newArray(int size) {
+            return new SponsorsArticles[size];
         }
     };
 
+    public SponsorsArticles() {
+    }
 }

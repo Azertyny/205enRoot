@@ -16,15 +16,15 @@ import retrofit2.http.Path;
  */
 
 public interface HttpService {
-    @GET("test_php/{script_php}")
-    io.reactivex.Observable<List<NewsArticles>> getFollowing(@Path("script_php") String news);
+    @GET("application/fr/{newsArticles}")
+    io.reactivex.Observable<List<NewsArticles>> getFollowing(@Path("newsArticles") String news);
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.15/")
+            .baseUrl("http://www.205enroot.fr/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build();
 
-    @GET("test_php/{games_php}")
-    io.reactivex.Observable<List<SponsorsList>> getSponsors(@Path("games_php") String sponsors);
+    @GET("application/fr/{sponsors}")
+    io.reactivex.Observable<List<SponsorsArticles>> getSponsors(@Path("sponsors") String sponsors);
 
 }

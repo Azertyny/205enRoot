@@ -19,15 +19,15 @@ import retrofit2.Response;
 
 
 public class HttpStreams {
-    public static Observable<List<NewsArticles>> streamFetchNewsFollowing(String news){
+    public static Observable<List<NewsArticles>> streamFetchNewsFollowing(String newsArticles){
         HttpService httpService = HttpService.retrofit.create(HttpService.class);
-        return httpService.getFollowing(news)
+        return httpService.getFollowing(newsArticles)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10, TimeUnit.SECONDS);
 
     }
-    public static Observable<List<SponsorsList>> streamFetchSponsorsFollowing(String sponsors){
+    public static Observable<List<SponsorsArticles>> streamFetchSponsorsFollowing(String sponsors){
         HttpService httpService = HttpService.retrofit.create(HttpService.class);
         return httpService.getSponsors(sponsors)
                 .subscribeOn(Schedulers.io())

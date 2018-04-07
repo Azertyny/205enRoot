@@ -1,16 +1,23 @@
 package e.clement.a205enroot;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.observers.DisposableObserver;
 
 
@@ -19,12 +26,21 @@ import io.reactivex.observers.DisposableObserver;
  */
 public class SponsorsPageFragment extends Fragment {
 
+    //RecyclerView recyclerView;
+    @BindView(R.id.fragment_sponsors_recycler_view) RecyclerView recyclerView; // 1 - Declare RecyclerView
+    @BindView(R.id.fragment_sponsors_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
 
-    public SponsorsPageFragment() {
-        // Required empty public constructor
+
+    private DisposableObserver<List<SponsorsArticles>> disposable;
+    private List<SponsorsArticles> sponsorsArticles;
+    public SponsorsAdapter adapter;
+
+    // Ajout de l'interface de Callback
+    private OnItemClickedListener mCallback;
+
+    public interface OnItemClickedListener{
+        void onSponsorsItemClicked(SponsorsArticles sponsors);
     }
-
-    private DisposableObserver<List<SponsorsList>> disposable;
 
     // Méthode de création d'une nouvelle instance de PageFragment (ajout des datas au bundle si nécessaire)
     public static SponsorsPageFragment newInstance(){
@@ -34,10 +50,18 @@ public class SponsorsPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // ###
+        View view = inflater.inflate(R.layout.fragment_sponsors_page, container, false);
+        ButterKnife.bind(this, view);
+
+        this.configureRecyclerView();
         this.excecuteHttpRetrofit();
-        return inflater.inflate(R.layout.fragment_sponsors_page, container, false);
+        this.configureSwipeRefreshLayout();
+        this.configureOnclickRecyclerView();
+
+        return view;
     }
+
     // ###
     @Override
     public void onDestroy() {
@@ -45,59 +69,85 @@ public class SponsorsPageFragment extends Fragment {
         this.disposeWhenDestroy();
     }
 
+
+    private void configureRecyclerView(){
+
+        // 3.1 - Reset list
+        this.sponsorsArticles = new ArrayList<>();
+        // 3.2 - Create adapter passing the list of users
+        this.adapter = new SponsorsAdapter(this.sponsorsArticles);
+        // 3.3 - Attach the adapter to the recyclerview to populate items
+        this.recyclerView.setAdapter(this.adapter);
+        // 3.4 - Set layout manager to position the items
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+
     private void excecuteHttpRetrofit() {
         //this.updateUIWhenStartingHTTPRequest();
 
-        this.disposable = HttpStreams.streamFetchSponsorsFollowing("games.php").subscribeWith(new DisposableObserver<List<SponsorsList>>(){
+        this.disposable = HttpStreams.streamFetchSponsorsFollowing("sponsors.php").subscribeWith(new DisposableObserver<List<SponsorsArticles>>(){
             @Override
-            public void onNext(List<SponsorsList> sponsors){
+            public void onNext(List<SponsorsArticles> sponsors){
                 Log.e("TAG","On Next");
-                updateUIWithListOfSponsors(sponsors);
+                updateUI(sponsors);
             }
             @Override
             public void onError(Throwable e) {
                 Log.e("TAG","On Error"+Log.getStackTraceString(e));
-                TextView textView = (TextView) getView().findViewById(R.id.fragment_page_sponsors_title);
-                textView.setText("Pas de réseau");
             }
             @Override
             public void onComplete() {
                 Log.e("TAG","On Complete !!");
             }
         });
-
     }
-
 
     // ###
     private void disposeWhenDestroy(){
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
-
     }
 
-
-
-
-
-    // -------------------
-    // UPDATE UI
-    // -------------------
-
-    private void updateUIWhenStartingHTTPRequest(){
-        //TextView textView = (TextView) getView().findViewById(R.id.fragment_page_news_title);
-        //textView.setText("Downloading...");
+    private void configureSwipeRefreshLayout(){
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                excecuteHttpRetrofit();
+            }
+        });
     }
 
-    private void updateUIWhenStopingHTTPRequest(String response){
-        TextView textView = (TextView) getView().findViewById(R.id.fragment_page_sponsors_title);
-        textView.setText(response);
+    private void configureOnclickRecyclerView(){
+        ItemClickSupport.addTo(recyclerView, R.layout.sponsors_page_item)
+                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                        Log.e("TAG", "Position : "+position);
+                        SponsorsArticles sponsor = adapter.getSponsors(position);
+                        mCallback.onSponsorsItemClicked(sponsor);
+                    }
+                });
+    }
+    private void updateUI(List<SponsorsArticles> articles){
+        swipeRefreshLayout.setRefreshing(false);
+        sponsorsArticles.clear();
+        sponsorsArticles.addAll(articles);
+        adapter.notifyDataSetChanged();
     }
 
-    private void updateUIWithListOfSponsors(List<SponsorsList> sponsors){
-        StringBuilder stringBuilder = new StringBuilder();
-        for (SponsorsList nom : sponsors){
-            stringBuilder.append("-"+ nom.getNom()+"\n");
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        this.createCallbackToParentActivity();
+    }
+
+    private void createCallbackToParentActivity(){
+        try{
+            mCallback = (OnItemClickedListener) getActivity();
+
+        }catch (ClassCastException e){
+            throw new ClassCastException(e.toString()+ " implementer in listener");
         }
-        updateUIWhenStopingHTTPRequest(stringBuilder.toString());
     }
+
 }

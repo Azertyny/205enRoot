@@ -36,7 +36,7 @@ import java.util.List;
 import static java.lang.Boolean.FALSE;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,NewsPageFragment.OnItemClickedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,NewsPageFragment.OnItemClickedListener,SponsorsPageFragment.OnItemClickedListener {
 
     //ProgressBar progressBar;
     private Toolbar toolbar;                // Barre supérieure
@@ -237,14 +237,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onItemClicked(NewsArticles news){
-        Log.e(getClass().getSimpleName(),"Button "+news.getTitre()+" clicked !");
+        Log.e(getClass().getSimpleName(),"Button "+news.getTitle()+" clicked !");
 
         Intent i = new Intent(this, DetailActivity.class);
         i.putExtra(DetailActivity.ITEM_NEWS,news);
         startActivity(i);
     }
     //#############################################################
-
+    @Override
+    public void onSponsorsItemClicked(SponsorsArticles sponsors){
+        //Log.e(getClass().getSimpleName(),"Button "+sponsors.getTitle()+" clicked !");
+        Intent i = new Intent(this, SponsorsDetailActivity.class);
+        i.putExtra(SponsorsDetailActivity.ITEM_SPONSOR,sponsors);
+        startActivity(i);
+    }
 
 
 
