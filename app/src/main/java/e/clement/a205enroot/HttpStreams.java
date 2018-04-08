@@ -34,6 +34,13 @@ public class HttpStreams {
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10, TimeUnit.SECONDS);
     }
+    public static Observable<List<Coordinates>> streamFetchCoordinatesFollowing(String coordinates){
+        HttpService httpService = HttpService.retrofit.create(HttpService.class);
+        return httpService.getCoordinates(coordinates)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(10, TimeUnit.SECONDS);
+    }
 
 
 }
