@@ -25,7 +25,6 @@ public class HttpStreams {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10, TimeUnit.SECONDS);
-
     }
     public static Observable<List<SponsorsArticles>> streamFetchSponsorsFollowing(String sponsors){
         HttpService httpService = HttpService.retrofit.create(HttpService.class);
@@ -37,6 +36,13 @@ public class HttpStreams {
     public static Observable<List<Coordinates>> streamFetchCoordinatesFollowing(String coordinates){
         HttpService httpService = HttpService.retrofit.create(HttpService.class);
         return httpService.getCoordinates(coordinates)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(10, TimeUnit.SECONDS);
+    }
+    public static Observable<List<Image>> streamFetchImagesFollowing(String image){
+        HttpService httpService = HttpService.retrofit.create(HttpService.class);
+        return httpService.getImages(image)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10, TimeUnit.SECONDS);

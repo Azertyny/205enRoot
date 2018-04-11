@@ -27,6 +27,10 @@ public interface HttpService {
     @GET("application/fr/{sponsors}")
     io.reactivex.Observable<List<SponsorsArticles>> getSponsors(@Path("sponsors") String sponsors);
 
+
     @GET("application/fr/{coordinates}")
     io.reactivex.Observable<List<Coordinates>> getCoordinates(@Path("coordinates") String sponsors);
+
+    @GET("application/fr/{images}")
+    io.reactivex.Observable<List<Image>> getImages(@Path("images") String image);
 }

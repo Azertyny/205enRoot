@@ -36,9 +36,9 @@ public class SponsorsPageFragment extends Fragment {
     public SponsorsAdapter adapter;
 
     // Ajout de l'interface de Callback
-    private OnItemClickedListener mCallback;
+    private OnSponsorClickedListener mCallback;
 
-    public interface OnItemClickedListener{
+    public interface OnSponsorClickedListener{
         void onSponsorsItemClicked(SponsorsArticles sponsors);
     }
 
@@ -143,7 +143,7 @@ public class SponsorsPageFragment extends Fragment {
 
     private void createCallbackToParentActivity(){
         try{
-            mCallback = (OnItemClickedListener) getActivity();
+            mCallback = (OnSponsorClickedListener) getActivity();
 
         }catch (ClassCastException e){
             throw new ClassCastException(e.toString()+ " implementer in listener");

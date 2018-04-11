@@ -35,9 +35,9 @@ public class DetailActivity extends AppCompatActivity {
         // Set la Toolbar
         setSupportActionBar(toolbar);
         // Obtention d'un support ActionBar correspondant à cette Toolbar
-        ActionBar ab = getSupportActionBar();
+        ActionBar ac = getSupportActionBar();
         // Rendre disponible le bouton Up
-        ab.setDisplayHomeAsUpEnabled(true);
+        ac.setDisplayHomeAsUpEnabled(true);
     }
 
     private void configureandShowFragment(){

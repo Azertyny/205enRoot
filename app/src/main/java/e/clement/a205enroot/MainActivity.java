@@ -36,7 +36,7 @@ import java.util.List;
 import static java.lang.Boolean.FALSE;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,NewsPageFragment.OnItemClickedListener,SponsorsPageFragment.OnItemClickedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,NewsPageFragment.OnItemClickedListener,SponsorsPageFragment.OnSponsorClickedListener, GalleryPageFragment.OnImageClickedListener {
 
     //ProgressBar progressBar;
     private Toolbar toolbar;                // Barre supérieure
@@ -252,6 +252,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(i);
     }
 
+    //#############################################################
+    @Override
+    public void onImageClicked(Image image){
+        //Log.e(getClass().getSimpleName(),"Button "+sponsors.getTitle()+" clicked !");
+     /*   Intent i = new Intent(this, ImagesDetailActivity.class);
+        i.putExtra(ImagesDetailActivity.ITEM_IMAGE,image);
+        startActivity(i);*/
+    }
 
 
     //##################################

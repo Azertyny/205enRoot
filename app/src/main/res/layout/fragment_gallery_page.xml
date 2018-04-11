@@ -1,3 +1,26 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="e.clement.a205enroot.MainActivity"
+    android:background="#EDD9CF">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_gallery_swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_gallery_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>
+
+<!--
 <LinearLayout
     android:id="@+id/fragment_page_gallery_rootview"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,3 +43,4 @@
         android:text="De belles photos ici !"/>
 
 </LinearLayout>
+-->

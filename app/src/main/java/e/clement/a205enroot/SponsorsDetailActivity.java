@@ -1,16 +1,15 @@
 package e.clement.a205enroot;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.util.Log;
 
 public class SponsorsDetailActivity extends AppCompatActivity {
 
     private SponsorsDetailFragment sponsorsDetailFragment;
-
+    public Toolbar toolbar;
     // Transfert par intent Extra de la position
     public static final String ITEM_SPONSOR = "e.clement.a205enroot.DetailActivity.ITEM_SPONSOR";
 
@@ -26,7 +25,7 @@ public class SponsorsDetailActivity extends AppCompatActivity {
 
     private void configureToolbar(){
         // Obtention de la Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         // Set la Toolbar
         setSupportActionBar(toolbar);
         // Obtention d'un support ActionBar correspondant à cette Toolbar

@@ -27,16 +27,22 @@ public class PageAdapter extends FragmentPagerAdapter{
         switch (position){
             case 0:
                 return NewsPageFragment.newInstance();
+
             case 1:
                 return EventPageFragment.newInstance();
+
             case 2:
                 return GalleryPageFragment.newInstance();
+
             case 3:
                 return MapsPageFragment.newInstance();
+
             case 4:
                 return SponsorsPageFragment.newInstance();
+
             default:
                 return null;
+
         }
     }
 
