@@ -27,10 +27,9 @@ import io.reactivex.observers.DisposableObserver;
 public class GalleryPageFragment extends Fragment {
 
 
-    @BindView(R.id.fragment_gallery_recycler_view)
-    RecyclerView recyclerView; // 1 - Declare RecyclerView
-    @BindView(R.id.fragment_gallery_swipe_container)
-    SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.fragment_gallery_recycler_view) RecyclerView recyclerView; // 1 - Declare RecyclerView
+   // @BindView(R.id.fragment_gallery_swipe_container)
+    //SwipeRefreshLayout swipeRefreshLayout;
 
     // Varaibles de gestion des données
     private DisposableObserver<List<Image>> disposable;
@@ -62,7 +61,7 @@ public class GalleryPageFragment extends Fragment {
 
         this.configureRecyclerView();
         this.excecuteHttpRetrofit();
-        this.configureSwipeRefreshLayout();
+        //this.configureSwipeRefreshLayout();
         this.configureOnclickRecyclerView();
 
         // Inflate the layout for this fragment
@@ -118,6 +117,8 @@ public class GalleryPageFragment extends Fragment {
     private void disposeWhenDestroy(){
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
+
+    /*
     private void configureSwipeRefreshLayout(){
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -126,7 +127,7 @@ public class GalleryPageFragment extends Fragment {
             }
         });
     }
-
+    */
     private void configureOnclickRecyclerView(){
         ItemClickSupport.addTo(recyclerView, R.layout.gallery_page_item)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
@@ -140,7 +141,7 @@ public class GalleryPageFragment extends Fragment {
     }
 
     private void updateUI(List<Image> mImages){
-        swipeRefreshLayout.setRefreshing(false);
+        //swipeRefreshLayout.setRefreshing(false);
         images.clear();
         images.addAll(mImages);
         adapter.notifyDataSetChanged();
