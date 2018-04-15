@@ -4,7 +4,6 @@ package e.clement.a205enroot;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -96,8 +95,14 @@ public class GalleryPageFragment extends Fragment {
 
     private void excecuteHttpRetrofit() {
         //this.updateUIWhenStartingHTTPRequest();
-
-        this.disposable = HttpStreams.streamFetchImagesFollowing("gallery.php").subscribeWith(new DisposableObserver<List<Image>>(){
+        String langue = this.getResources().getConfiguration().locale.getDisplayLanguage();
+        String code;
+        if (langue.contentEquals("English")){
+            code = "en";
+        }
+        else{code = "fr";}
+        Log.e("LANGAGE",langue);
+        this.disposable = HttpStreams.streamFetchImagesFollowing(code).subscribeWith(new DisposableObserver<List<Image>>(){
             @Override
             public void onNext(List<Image> images){
                 Log.e("TAG","On Next");

@@ -94,18 +94,14 @@ public class Coordinates implements Parcelable{
     }
 
     public final static Parcelable.Creator<Coordinates> CREATOR = new Creator<Coordinates>() {
-
         @Override
         public Coordinates createFromParcel(Parcel in) {
             return new Coordinates(in);
         }
-
         public Coordinates[] newArray(int size) {
             return (new Coordinates[size]);
         }
-
-    }
-            ;
+    };
 
     protected Coordinates(Parcel in) {
         this.idCoordinate = ((int) in.readValue((String.class.getClassLoader())));
@@ -115,10 +111,4 @@ public class Coordinates implements Parcelable{
         this.info = ((String) in.readValue((String.class.getClassLoader())));
         this.place = ((String) in.readValue((String.class.getClassLoader())));
     }
-
-
-
-
-
-
 }

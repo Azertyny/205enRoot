@@ -20,31 +20,29 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
         this.news = news;
     }
 
+    // Instanciation du ViewHolder "NewsViewHolder.java"
     @Override
     public NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // CREATE VIEW HOLDER AND INFLATING ITS XML LAYOUT
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.news_page_item, parent, false);
-
         return new NewsViewHolder(view);
     }
 
-    // UPDATE VIEW HOLDER WITH A GITHUBUSER
+    // Appel de la méthode de m.à.j de l'UI par le ViewHolder
     @Override
     public void onBindViewHolder(NewsViewHolder viewHolder, int position) {
-        viewHolder.updateWithNewsTitle(this.news.get(position));
+        viewHolder.updateWithNews(this.news.get(position));
     }
 
-    // RETURN THE TOTAL COUNT OF ITEMS IN THE LIST
+    // Ajoute les éléments correspondant au nombre d'éléments dans la liste de news
     @Override
     public int getItemCount() {
         return this.news.size();
     }
 
-    // Méthode publique permettant de gérer le numéro de la news sur laquelle l'utilisateur a cliqué
+    // Méthode permettant de gérer le numéro de la news sur laquelle l'utilisateur a cliqué
     public NewsArticles getNews(int position){
         return this.news.get(position);
     }
-
 }

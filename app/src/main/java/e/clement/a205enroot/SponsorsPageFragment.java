@@ -84,9 +84,15 @@ public class SponsorsPageFragment extends Fragment {
 
 
     private void excecuteHttpRetrofit() {
-        //this.updateUIWhenStartingHTTPRequest();
+        String langue = this.getResources().getConfiguration().locale.getDisplayLanguage();
+        String code;
+        if (langue.contentEquals("English")){
+            code = "en";
+        }
+        else{code = "fr";}
+        Log.e("LANGAGE",langue);
 
-        this.disposable = HttpStreams.streamFetchSponsorsFollowing("sponsors.php").subscribeWith(new DisposableObserver<List<SponsorsArticles>>(){
+        this.disposable = HttpStreams.streamFetchSponsorsFollowing(code).subscribeWith(new DisposableObserver<List<SponsorsArticles>>(){
             @Override
             public void onNext(List<SponsorsArticles> sponsors){
                 Log.e("TAG","On Next");

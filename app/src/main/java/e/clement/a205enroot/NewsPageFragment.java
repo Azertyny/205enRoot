@@ -27,99 +27,136 @@ import io.reactivex.observers.DisposableObserver;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+// -------------------------------------------------------------------------------------------------
+// Fragment correspondant à la page de News (Position 0 du ViewPager
+// Des éléments graphiques et de données sont aussi implémentés au sein du fragment :
+//      - RecyclerView
+//      - SwipeRefreshLayout
+//      - Requête réseau
+// -------------------------------------------------------------------------------------------------
 public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listeners,*/{
 
-    //RecyclerView recyclerView;
-    @BindView(R.id.fragment_news_recycler_view) RecyclerView recyclerView; // 1 - Declare RecyclerView
+    // Récupération de la RecyclerView dans le Layout et affectation à une variable
+    @BindView(R.id.fragment_news_recycler_view) RecyclerView recyclerView;
+    public NewsAdapter adapter;                                 // Adapteur pour la RecyclerView
+    // Récupération du SwipeRefreshLayout dans le Layout et affectation à une variable
     @BindView(R.id.fragment_main_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
 
-    // Varaibles de gestion des données
-    private DisposableObserver<List<NewsArticles>> disposable;
-    private List<NewsArticles> newsArticles;
-    public NewsAdapter adapter;
+    // Variables de gestion des données récupérer sur le server
+    private DisposableObserver<List<NewsArticles>> disposable;  // Observer de HttpStreams
+    private List<NewsArticles> newsArticles;                    // Liste des objets NewsArticles
 
-    // Ajout de l'interface de Callback
+    // Variable de l'interface de Callback (cf. MainActivity.java)
     private OnItemClickedListener mCallback;
-
+    // Déclaration de l'interface de Callback lors du clic sur un item de la RecyclerView
     public interface OnItemClickedListener{
         void onItemClicked(NewsArticles news);
     }
 
-    // Méthode de création d'une nouvelle instance de PageFragment (ajout des datas au bundle si nécessaire)
+    // Méthode de création d'une nouvelle instance de PageFragment appelée dans "PageAdapter"
     public static NewsPageFragment newInstance(){
         return (new NewsPageFragment());
     }
 
+    // Lors de la création du fragment ...
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // ###
         View view = inflater.inflate(R.layout.fragment_news_page, container, false);
         ButterKnife.bind(this, view);
+        // ...Appel des méthodes de configuration et initialisation des différents éléments du fragment :
 
         this.configureRecyclerView();
         this.excecuteHttpRetrofit();
         this.configureSwipeRefreshLayout();
         this.configureOnclickRecyclerView();
-
-        // Inflate the layout for this fragment
-        return view; //inflater.inflate(R.layout.fragment_news_page, container, false);
+        return view;
     }
 
-    // ###
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        this.disposeWhenDestroy();
-    }
-
+    // ---------------------------------------------------------------------------------------------
+    // RECYCLERVIEW
+    // ---------------------------------------------------------------------------------------------
     private void configureRecyclerView(){
-
-        // 3.1 - Reset list
+        // Initialisation de la liste d'articles
         this.newsArticles = new ArrayList<>();
-        // 3.2 - Create adapter passing the list of users
+        // Remplissage de la RecyclerView avec la liste d'articles par l'adaptateur
         this.adapter = new NewsAdapter(this.newsArticles);
-        // 3.3 - Attach the adapter to the recyclerview to populate items
         this.recyclerView.setAdapter(this.adapter);
-        // 3.4 - Set layout manager to position the items
+        // Placement des différents items de la RecyclerView par le LayoutManager
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    // ---------------------------------------------------------------------------------------------
+    // NETWORK REQUEST
+    // ---------------------------------------------------------------------------------------------
     private void excecuteHttpRetrofit() {
-        //this.updateUIWhenStartingHTTPRequest();
-
-        this.disposable = HttpStreams.streamFetchNewsFollowing("news.php").subscribeWith(new DisposableObserver<List<NewsArticles>>(){
-           @Override
+        // Vérification de la langue utilisée sur le téléphone afin de faire la requête sur la BDD associée :
+        String langue = this.getResources().getConfiguration().locale.getDisplayLanguage();
+        String code;
+        if (langue.contentEquals("English")){
+            code = "en";
+        }
+        else{code = "fr";}
+        Log.e("LANGAGE",langue);
+        // Inscription de l'Observer au stream
+        this.disposable = HttpStreams.streamFetchNewsFollowing(code).subscribeWith(new DisposableObserver<List<NewsArticles>>(){
+            @Override
             public void onNext(List<NewsArticles> news){
-               Log.e("TAG","On Next");
-               updateUI(news);
-           }
+                Log.e("NEWS","On Next");
+                // Une fois la requête réseau effectuée, mise à jour de la RecyclerView :
+                updateUI(news);
+            }
             @Override
             public void onError(Throwable e) {
                 Log.e("TAG","On Error"+Log.getStackTraceString(e));
             }
             @Override
             public void onComplete() {
-                Log.e("TAG","On Complete !!");
+                Log.e("NEWS","On Complete");
             }
         });
     }
-
-    // ###
+    private void updateUI(List<NewsArticles> articles){
+        // Désactive la possibilité de rafraîchissment lors de la mis à jour des données :
+        swipeRefreshLayout.setRefreshing(false);
+        // Reset de la RecyclerView :
+        newsArticles.clear();
+        // Ajout des articles :
+        newsArticles.addAll(articles);
+        // Notification à l'adapter du changement de données :
+        adapter.notifyDataSetChanged();
+    }
+    // Méthodes de désinscription du stream lors de la destruction du fragment
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        this.disposeWhenDestroy();
+    }
     private void disposeWhenDestroy(){
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
+    // ---------------------------------------------------------------------------------------------
 
+    // ---------------------------------------------------------------------------------------------
+    // SWIPE REFRESH LAYOUT
+    // ---------------------------------------------------------------------------------------------
     private void configureSwipeRefreshLayout(){
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                // Lors d'un rafraîchissment, on refait une requête http :
                 excecuteHttpRetrofit();
             }
         });
     }
+    // ---------------------------------------------------------------------------------------------
 
+    // ---------------------------------------------------------------------------------------------
+    // CALLBACK
+    // ---------------------------------------------------------------------------------------------
     private void configureOnclickRecyclerView(){
+        // Ajout d'un listener pour chaque élément de la RecyclerView :
         ItemClickSupport.addTo(recyclerView, R.layout.news_page_item)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
@@ -131,21 +168,12 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
                 });
     }
 
-    private void updateUI(List<NewsArticles> articles){
-        swipeRefreshLayout.setRefreshing(false);
-        newsArticles.clear();
-        newsArticles.addAll(articles);
-        adapter.notifyDataSetChanged();
-    }
-
-    //###### Ajout de l'interface de callback pour gérer le click de la RecyclerView dans MainActivity
-
+    // Méthodes permettant de faire le lien avec MainActivity.java :
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
         this.createCallbackToParentActivity();
     }
-
     private void createCallbackToParentActivity(){
         try{
             mCallback = (OnItemClickedListener) getActivity();
@@ -154,90 +182,5 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
             throw new ClassCastException(e.toString()+ " implementer in listener");
         }
     }
-
-    //##########################################################################
-
-    /*
-    private void excecuteHttpRetrofit() {
-        //this.updateUIWhenStartingHTTPRequest();
-        HttpCalls.fetchNewsFollowing(this,"mysql_connect.php");
-    }
-
-    @Override
-    public void onResponse(@Nullable List<NewsArticles> users) {
-        // 2.1 - When getting response, we update UI
-        if (users != null) this.updateUIWithListOfUsers(users);
-    }
-
-    @Override
-    public void onFailure() {
-        // 2.2 - When getting error, we update UI
-        this.updateUIWhenStopingHTTPRequest("An error happened !");
-    }
-
-    // ------------------
-    //  UPDATE UI
-    // ------------------
-
-    // 3 - Update UI showing only name of users
-
-    private void updateUIWithListOfUsers(List<NewsArticles> news){
-        StringBuilder stringBuilder = new StringBuilder();
-        for (NewsArticles titre : news){
-            stringBuilder.append("-"+titre.getTitre()+"\n");
-        }
-        updateUIWhenStopingHTTPRequest(stringBuilder.toString());
-    }
-
-    private void updateUIWhenStopingHTTPRequest(String s) {
-        TextView textView = (TextView) getView().findViewById(R.id.fragment_page_news_title);
-        textView.setText(s);
-    }*/
-
-
+    // ---------------------------------------------------------------------------------------------
 }
-
-    // ------
-// Implémentation avec l'AsyncTask
-/*
-
-    // 3 - We create and start our AsyncTask
-
-    private void startAsyncTask() {
-        new MyAsyncTask(this).execute("http://192.168.1.15/test_php/mysql_connect.php");
-    }
-
-    // 2 - Override methods of callback
-    @Override
-    public void onPreExecute() {
-        // 2.1 - We update our UI before task (starting ProgressBar)
-        this.updateUIBeforeTask();
-    }
-
-    @Override
-    public void doInBackground() { }
-
-    @Override
-    public void onPostExecute(String json) {
-        // 2.2 - We update our UI before task (stopping ProgressBar)
-        this.updateUIAfterTask(json);
-    }
-
-    // -----------------
-    // UPDATE UI
-    // -----------------
-
-    public void updateUIBeforeTask(){
-        //progressBar.setVisibility(View.VISIBLE);
-    }
-
-    public void updateUIAfterTask(String taskEnd){
-        //progressBar.setVisibility(View.GONE);
-        //Toast.makeText(super.getContext(), "Task is finally finished at : "+taskEnd+" !", Toast.LENGTH_SHORT).show();
-        TextView textView = (TextView) getView().findViewById(R.id.fragment_page_news_title);
-        textView.setText(taskEnd);
-    }*/
-
-
-
-

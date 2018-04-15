@@ -56,9 +56,10 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/activity_main_nav_header"
         app:menu="@menu/activity_main_menu_drawer"
-        android:background="#FFFF"
-        app:itemTextColor="@color/colorAccent"/>
-
+        android:background="#FFFF"/>
+    <!--
+        app:itemTextColor="@color/colorAccent"
+    -->
 
 </android.support.v4.widget.DrawerLayout>
 

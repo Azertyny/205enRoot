@@ -68,7 +68,14 @@ public class MapsPageFragment extends android.support.v4.app.Fragment implements
 
 
     private void excecuteHttpRetrofit() {
-        this.disposable = HttpStreams.streamFetchCoordinatesFollowing("map.php").subscribeWith(new DisposableObserver<List<Coordinates>>(){
+        String langue = this.getResources().getConfiguration().locale.getDisplayLanguage();
+        String code;
+        if (langue.contentEquals("English")){
+            code = "en";
+        }
+        else{code = "fr";}
+        Log.e("LANGAGE",langue);
+        this.disposable = HttpStreams.streamFetchCoordinatesFollowing(code).subscribeWith(new DisposableObserver<List<Coordinates>>(){
             @Override
             public void onNext(List<Coordinates> m_coordinates){
                 Log.e("TAG","On Next");

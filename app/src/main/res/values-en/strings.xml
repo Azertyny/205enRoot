@@ -11,8 +11,16 @@
     <string name="assoRoot">Our association</string>
     <string name="assoMaroc">Charity</string>
 
-    <string name="jeu">Flappy205</string>
+    <string name="jeu">To come ...</string>
     <string name="preferences">Settings</string>
     <string name="contact">Contact us</string>
+
+
+    <string name="news">News</string>
+    <string name="event">The Event</string>
+    <string name="gallery">Gallery</string>
+    <string name="map">Where is the 205 ?</string>
+    <string name="sponsors">Our Sponsors</string>
+
 
 </resources>

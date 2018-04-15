@@ -16,21 +16,21 @@ import retrofit2.http.Path;
  */
 
 public interface HttpService {
-    @GET("application/fr/{newsArticles}")
-    io.reactivex.Observable<List<NewsArticles>> getFollowing(@Path("newsArticles") String news);
+    @GET("application/{code}/news.php")
+    io.reactivex.Observable<List<NewsArticles>> getFollowing(@Path("code") String news);
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://www.205enroot.fr/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build();
 
-    @GET("application/fr/{sponsors}")
-    io.reactivex.Observable<List<SponsorsArticles>> getSponsors(@Path("sponsors") String sponsors);
+    @GET("application/{code}/sponsors.php")
+    io.reactivex.Observable<List<SponsorsArticles>> getSponsors(@Path("code") String sponsors);
 
 
-    @GET("application/fr/{coordinates}")
-    io.reactivex.Observable<List<Coordinates>> getCoordinates(@Path("coordinates") String sponsors);
+    @GET("application/{code}/map.php")
+    io.reactivex.Observable<List<Coordinates>> getCoordinates(@Path("code") String sponsors);
 
-    @GET("application/fr/{images}")
-    io.reactivex.Observable<List<Image>> getImages(@Path("images") String image);
+    @GET("application/{code}/gallery.php")
+    io.reactivex.Observable<List<Image>> getImages(@Path("code") String image);
 }

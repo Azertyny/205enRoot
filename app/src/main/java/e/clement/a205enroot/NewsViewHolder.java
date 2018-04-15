@@ -25,7 +25,7 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void updateWithNewsTitle(NewsArticles news){
+    public void updateWithNews(NewsArticles news){
         this.title.setText(news.getTitle());
         this.content.setText(news.getContent());
         Glide.with(this.image).load(news.getUrl()).into(image);
