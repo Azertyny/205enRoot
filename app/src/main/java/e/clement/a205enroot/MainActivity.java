@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;                          // Page latérale déroulante
     private NavigationView navigationView;                      // Menu du DrawerLayout
     protected TabLayout tabs;                                   // Barre de navigation inférieure
-    
+
     // Variables de gestion de la selection dans le TabLayout
     protected LinearLayout.LayoutParams layoutParamsSelected, layoutParamsDefault;
     // Variables correspondant à chaque élément du TabLayout

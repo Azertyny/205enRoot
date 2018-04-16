@@ -56,7 +56,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/activity_main_nav_header"
         app:menu="@menu/activity_main_menu_drawer"
-        android:background="#FFFF"/>
+        android:background="#c9baba"/>
     <!--
         app:itemTextColor="@color/colorAccent"
     -->
