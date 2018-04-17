@@ -6,17 +6,17 @@ import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.util.Log;
 
-public class SponsorsDetailActivity extends AppCompatActivity {
+public class ImageDetailActivity extends AppCompatActivity {
 
-    private SponsorsDetailFragment sponsorsDetailFragment;
+    private ImageDetailFragment imageDetailFragment;
     public Toolbar toolbar;
     // Transfert par intent Extra de la position
-    public static final String ITEM_SPONSOR = "e.clement.a205enroot.SponsorsDetailActivity.ITEM_SPONSOR";
+    public static final String ITEM_IMAGE = "e.clement.a205enroot.ImageDetailActivity.ITEM_IMAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sponsors_detail);
+        setContentView(R.layout.activity_image_detail);
         // Configuration de la Toolbar
         this.configureToolbar();
         // Configuration du fragment
@@ -35,13 +35,13 @@ public class SponsorsDetailActivity extends AppCompatActivity {
     }
 
     private void configureandShowFragment(){
-        sponsorsDetailFragment = (SponsorsDetailFragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout_sponsors_detail);
+        imageDetailFragment = (ImageDetailFragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout_image_detail);
 
-        if(sponsorsDetailFragment == null){
-            sponsorsDetailFragment = new SponsorsDetailFragment();
+        if(imageDetailFragment == null){
+            imageDetailFragment = new ImageDetailFragment();
             // Ajout du fragment dans le frame layout
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frame_layout_sponsors_detail,sponsorsDetailFragment)
+                    .add(R.id.frame_layout_image_detail,imageDetailFragment)
                     .commit();
             Log.e(getClass().getSimpleName(),"Coucou !");
         }
@@ -54,12 +54,13 @@ public class SponsorsDetailActivity extends AppCompatActivity {
     }
 
     private void updateDetailFragment() {
-        SponsorsArticles sponsors = getIntent().getParcelableExtra(ITEM_SPONSOR);
-        //NewsArticles news = getIntent().getSerializableExtra(ITEM_NEWS);
+        Image images = getIntent().getParcelableExtra(ITEM_IMAGE);
         //Log.e(getClass().getSimpleName(),sponsors.getName() );
-        sponsorsDetailFragment.updateUI(sponsors);
+        imageDetailFragment.updateUI(images);
 
     }
+
+
 
 
 }

@@ -27,7 +27,7 @@ public class GalleryPageFragment extends Fragment {
 
 
     @BindView(R.id.fragment_gallery_recycler_view) RecyclerView recyclerView; // 1 - Declare RecyclerView
-   // @BindView(R.id.fragment_gallery_swipe_container)
+    //@BindView(R.id.fragment_gallery_swipe_container) android.support.v4.widget.SwipeRefreshLayout swipeRefreshLayout;
     //SwipeRefreshLayout swipeRefreshLayout;
 
     // Varaibles de gestion des données
@@ -81,15 +81,15 @@ public class GalleryPageFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        // 3.1 - Reset list
+
         this.images = new ArrayList<>();
-        // 3.2 - Create adapter passing the list of users
+
         this.adapter = new GalleryAdapter(this.images);
 
 
-        // 3.3 - Attach the adapter to the recyclerview to populate items
+
         this.recyclerView.setAdapter(this.adapter);
-        // 3.4 - Set layout manager to position the items
+
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
@@ -123,16 +123,16 @@ public class GalleryPageFragment extends Fragment {
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
 
-    /*
-    private void configureSwipeRefreshLayout(){
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+    /*private void configureSwipeRefreshLayout(){
+        swipeRefreshLayout.setOnRefreshListener(new android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 excecuteHttpRetrofit();
             }
         });
-    }
-    */
+    }*/
+
     private void configureOnclickRecyclerView(){
         ItemClickSupport.addTo(recyclerView, R.layout.gallery_page_item)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {

@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="e.clement.a205enroot.DetailActivity"
-    android:background="#D8DCF0">
+    tools:context="e.clement.a205enroot.SponsorsDetailActivity"
+    android:background="@color/backgroundColor">
 
     <ImageView
         android:id="@+id/sponsors_item_detail_fragment_image"

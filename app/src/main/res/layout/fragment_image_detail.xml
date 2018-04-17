@@ -4,19 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="e.clement.a205enroot.DetailActivity"
+    tools:context="e.clement.a205enroot.ImageDetailActivity"
     android:background="@color/backgroundColor">
 
     <ImageView
-        android:id="@+id/item_detail_fragment_image"
-
+        android:id="@+id/image_item_detail_fragment_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="30"
         />
 
     <TextView
-        android:id="@+id/item_detail_fragment_title"
+        android:id="@+id/image_item_detail_fragment_name"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="10"
@@ -24,7 +23,7 @@
         android:textSize="20sp"/>
 
     <TextView
-        android:id="@+id/item_detail_fragment_content"
+        android:id="@+id/image_item_detail_fragment_description"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="60"

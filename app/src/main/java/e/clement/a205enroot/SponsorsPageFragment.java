@@ -72,13 +72,13 @@ public class SponsorsPageFragment extends Fragment {
 
     private void configureRecyclerView(){
 
-        // 3.1 - Reset list
+
         this.sponsorsArticles = new ArrayList<>();
-        // 3.2 - Create adapter passing the list of users
+
         this.adapter = new SponsorsAdapter(this.sponsorsArticles);
-        // 3.3 - Attach the adapter to the recyclerview to populate items
+
         this.recyclerView.setAdapter(this.adapter);
-        // 3.4 - Set layout manager to position the items
+
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 

@@ -46,7 +46,7 @@ public class DetailActivity extends AppCompatActivity {
         // Obtention d'un support ActionBar correspondant à cette Toolbar
         actionBar = getSupportActionBar();
         // Rendre disponible le bouton Up de retour à la MainActivity
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(false);
     }
     // ---------------------------------------------------------------------------------------------
 

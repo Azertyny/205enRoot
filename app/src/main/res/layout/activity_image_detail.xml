@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="e.clement.a205enroot.SponsorsDetailActivity">
+    tools:context="e.clement.a205enroot.ImageDetailActivity">
 
     <!-- Importation de la Toolbar -->
 
@@ -16,7 +16,7 @@
 
     <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/frame_layout_sponsors_detail"
+        android:id="@+id/frame_layout_image_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

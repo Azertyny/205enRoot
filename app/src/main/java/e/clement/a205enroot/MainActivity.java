@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;                      // Menu du DrawerLayout
     protected TabLayout tabs;                                   // Barre de navigation inférieure
 
+
+
     // Variables de gestion de la selection dans le TabLayout
     protected LinearLayout.LayoutParams layoutParamsSelected, layoutParamsDefault;
     // Variables correspondant à chaque élément du TabLayout
@@ -67,12 +69,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             R.layout.ic_tab_sponsors
     };
 
+
+
     // Tableau des mails à passer dans l'implicit intent
     protected String[] mails = {"foyart@et.esiea.fr","hanna@et.esiea.fr"};
 
     // Lors de la création de l'activité ...
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         // ...Appel des méthodes de configuration et initialisation des différents éléments de l'UI :
         // Configuration de la Toolbar :
@@ -228,6 +233,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int pos = tab.getPosition();
+
                 switch (pos){
                     case 0:
                         toolbar.setTitle(getString(R.string.news));
@@ -245,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         toolbar.setTitle(getString(R.string.sponsors));
                         break;
                     default:
-                         toolbar.setTitle("205 en ROOT");
+                        toolbar.setTitle("205 en ROOT");
                 }
                 changeTabSelected(tab.getCustomView());
             }
@@ -292,8 +298,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onImageClicked(Image image){
         Log.e(getClass().getSimpleName(),"Image "+image.getLegend()+" sélectionnée.");
 
-        /* Intent i = new Intent(this, ImagesDetailActivity.class);
-        i.putExtra(ImagesDetailActivity.ITEM_IMAGE,image);
-        startActivity(i);*/
+        Intent i = new Intent(this, ImageDetailActivity.class);
+        i.putExtra(ImageDetailActivity.ITEM_IMAGE,image);
+        startActivity(i);
     }
+/*
+    @Override
+    public void onPause(){
+        super.onPause();
+
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.e("NB", Integer.toString( nb));
+        configureViewPagerAndTabs(nb);
+    }
+
+     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.e("NB", "Save");
+        outState.putInt("fragmentNumber", nb);
+    }
+
+    //nb = savedInstance.getInt(fragmentNumber);
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.e("NB", "Restore");
+        nb = savedInstanceState.getInt("fragmentNumber");
+
+    }
+    @Override
+    public void onBackPressed()
+    {
+        if(!BackStackFragment.handleBackPressed(getSupportFragmentManager())){
+            super.onBackPressed();
+        }*/
 }
+
