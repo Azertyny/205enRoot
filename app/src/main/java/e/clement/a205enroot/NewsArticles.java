@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 /**
  * Created by Clément on 02/04/2018.
  */
@@ -21,7 +23,7 @@ public class NewsArticles implements Parcelable{
     private String content;
     @SerializedName("date")
     @Expose
-    private String date;
+    private Date date;
     @SerializedName("url")
     @Expose
     private String url;
@@ -49,11 +51,11 @@ public class NewsArticles implements Parcelable{
         this.content = content;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -101,7 +103,7 @@ public class NewsArticles implements Parcelable{
     private NewsArticles(Parcel in){
         this.title = ((String) in.readValue((String.class.getClassLoader())));
         this.content = ((String) in.readValue((String.class.getClassLoader())));
-        this.date = ((String) in.readValue((String.class.getClassLoader())));
+        this.date = ((Date) in.readValue((String.class.getClassLoader())));
         this.url = ((String) in.readValue((String.class.getClassLoader())));
         this.description = ((String) in.readValue((String.class.getClassLoader())));
         this.legend = ((String) in.readValue((String.class.getClassLoader())));

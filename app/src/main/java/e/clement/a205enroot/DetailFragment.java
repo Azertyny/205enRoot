@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,11 @@ public class DetailFragment extends Fragment {
     public void updateUI(NewsArticles news){
         this.title.setText(news.getTitle());
         this.content.setText(news.getContent());
-        Glide.with(this).load(news.getUrl()).into(image);
+        Glide.with(this.image)
+                .load(news.getUrl())
+                .apply(new RequestOptions()
+                .centerCrop())
+                .into(image);
     }
 
 }

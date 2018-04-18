@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -54,14 +55,15 @@ public class MapsPageFragment extends android.support.v4.app.Fragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_maps_page, container, false);
+        View mapView = inflater.inflate(R.layout.fragment_maps_page, container, false);
                 //inflater.inflate(R.layout.fragment_maps_page, container, false);
         //Inflate the layout for this fragment
         //coordinates.add(init);
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         excecuteHttpRetrofit();
-        return view;
+
+        return mapView;
     }
 
 
@@ -96,23 +98,17 @@ public class MapsPageFragment extends android.support.v4.app.Fragment implements
 
     }
     private void updateUI(){
+        int i;
+        for ( i = 0; i<coordinates.size()-1; i++) {
 
-        for (int i = 0; i<= 3; i++) {
-            /*float lat = ;
-            /*float lat = ;
-            float longi = coordinates.get(0).getLongitude();*/
-
-
-            //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, longi), 10));
-            googleMap.addMarker(new MarkerOptions().position(new LatLng(coordinates.get(i).getLatitude(), coordinates.get(i).getLongitude())));
+            googleMap.addMarker(new MarkerOptions().position(new LatLng(coordinates.get(i).getLatitude(), coordinates.get(i).getLongitude())).title(coordinates.get(i).getInfo()));
         }
-        //mapFragment.getMap().animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,longi , 10));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(coordinates.get(i).getLatitude(), coordinates.get(i).getLongitude())).title(coordinates.get(i).getInfo()));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(coordinates.get(i).getLatitude(),coordinates.get(i).getLongitude()),(float)7.6));
 
-        //updateUIWhenStopingHTTPRequest(lat,longi);
+        //Toast.makeText(this.getContext(),getString(R.string.balise),Toast.LENGTH_SHORT).show();
     }
 
-    private void updateUIWhenStopingHTTPRequest(float lat, float longi) {
-    }
 
     @Override
     public void onMapReady(GoogleMap m_googleMap){

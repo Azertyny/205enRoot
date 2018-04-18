@@ -51,15 +51,15 @@ public class SponsorsPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // ###
-        View view = inflater.inflate(R.layout.fragment_sponsors_page, container, false);
-        ButterKnife.bind(this, view);
+        View sponsorsView = inflater.inflate(R.layout.fragment_sponsors_page, container, false);
+        ButterKnife.bind(this, sponsorsView);
 
         this.configureRecyclerView();
         this.excecuteHttpRetrofit();
         this.configureSwipeRefreshLayout();
         this.configureOnclickRecyclerView();
 
-        return view;
+        return sponsorsView;
     }
 
     // ###

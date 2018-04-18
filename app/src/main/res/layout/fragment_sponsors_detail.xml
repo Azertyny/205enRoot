@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/sponsors_item_detail_fragment_image"
-
+        android:background="#FFF"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="30"
@@ -17,12 +17,33 @@
 
     <TextView
         android:id="@+id/sponsors_item_detail_fragment_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"
-        android:textColor="#c92020"
+        android:textColor="#FFF"
+        android:background="@color/colorAccentOpacityLess"
+        android:layout_weight="6"
+        android:gravity="center"
         android:textSize="20sp"/>
-
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/sponsors_item_detail_fragment_description"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="60"
+                android:padding="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+    <!--
     <TextView
         android:id="@+id/sponsors_item_detail_fragment_description"
         android:layout_width="match_parent"
@@ -30,5 +51,5 @@
         android:layout_weight="60"
         android:textColor="#c92020"
         android:textSize="20sp"/>
-
+    -->
 </LinearLayout>

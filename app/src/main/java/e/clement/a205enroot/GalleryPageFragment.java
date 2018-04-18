@@ -55,8 +55,8 @@ public class GalleryPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_gallery_page, container, false);
-        ButterKnife.bind(this, view);
+        View galleryView = inflater.inflate(R.layout.fragment_gallery_page, container, false);
+        ButterKnife.bind(this, galleryView);
 
         this.configureRecyclerView();
         this.excecuteHttpRetrofit();
@@ -64,7 +64,7 @@ public class GalleryPageFragment extends Fragment {
         this.configureOnclickRecyclerView();
 
         // Inflate the layout for this fragment
-        return view;
+        return galleryView;
     }
 
     // ###

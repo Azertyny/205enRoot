@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,7 +18,7 @@ import butterknife.ButterKnife;
 public class NewsViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.news_page_item_title) TextView title;
-    @BindView(R.id.news_page_item_content) TextView content;
+    //@BindView(R.id.news_page_item_content) TextView content;
     @BindView(R.id.news_page_item_image) ImageView image;
     public NewsViewHolder(View itemView) {
         super(itemView);
@@ -27,7 +28,11 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
 
     public void updateWithNews(NewsArticles news){
         this.title.setText(news.getTitle());
-        this.content.setText(news.getContent());
-        Glide.with(this.image).load(news.getUrl()).into(image);
+        //this.content.setText(news.getContent());
+        Glide.with(this.image)
+                .load(news.getUrl())
+                .apply(new RequestOptions()
+                .centerCrop())
+                .into(image);
     }
 }

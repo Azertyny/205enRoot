@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 
 /**
@@ -38,7 +39,11 @@ public class SponsorsDetailFragment extends Fragment {
     public void updateUI(SponsorsArticles sponsors){
         this.name.setText(sponsors.getName());
         this.description.setText(sponsors.getSponsorDescription());
-        Glide.with(this).load(sponsors.getUrl()).into(image);
+        Glide.with(this.image)
+                .load(sponsors.getUrl())
+                .apply(new RequestOptions()
+                .centerCrop())
+                .into(image);
     }
 
 }

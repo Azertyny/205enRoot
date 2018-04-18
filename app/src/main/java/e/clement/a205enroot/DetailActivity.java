@@ -6,6 +6,11 @@ import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 // -------------------------------------------------------------------------------------------------
 // Activité permettant de voir les détails d'un article
@@ -78,7 +83,16 @@ public class DetailActivity extends AppCompatActivity {
     private void updateDetailFragment() {
         NewsArticles news = getIntent().getParcelableExtra(ITEM_NEWS);
         Log.e(getClass().getSimpleName(), news.getTitle() );
-        actionBar.setTitle("205 en ROOT");
+        String langue = this.getResources().getConfiguration().locale.getDisplayLanguage();
+        String date;
+        if (langue.contentEquals("English")){
+            date = new SimpleDateFormat("EEE, d MMM yyyy ", Locale.ENGLISH).format(news.getDate());
+        }
+        else{
+            date = new SimpleDateFormat("EEE, d MMM yyyy ", Locale.FRANCE).format(news.getDate());
+        }
+
+        actionBar.setTitle(date);
         // Appel de la méthode de mise à jour de l'affichage du fragment :
         detailFragment.updateUI(news);
     }
