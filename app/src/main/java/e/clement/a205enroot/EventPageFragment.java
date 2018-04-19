@@ -72,7 +72,6 @@ public class EventPageFragment extends Fragment {
             switch (position) {
                 case 0:
                     return TrophyEventPageFragment.newInstance();
-
                 case 1:
                     return RootEventPageFragment.newInstance();
                 case 2:

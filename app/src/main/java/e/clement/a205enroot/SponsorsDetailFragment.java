@@ -42,7 +42,7 @@ public class SponsorsDetailFragment extends Fragment {
         Glide.with(this.image)
                 .load(sponsors.getUrl())
                 .apply(new RequestOptions()
-                .centerCrop())
+                .fitCenter())
                 .into(image);
     }
 
