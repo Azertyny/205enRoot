@@ -31,14 +31,14 @@ public class ImageDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_image_detail, container, false);
-        this.legend = view.findViewById(R.id.image_item_detail_fragment_name);
-        this.description = view.findViewById(R.id.image_item_detail_fragment_description);
+        //this.legend = view.findViewById(R.id.image_item_detail_fragment_name);
+        //this.description = view.findViewById(R.id.image_item_detail_fragment_description);
         this.image = view.findViewById(R.id.image_item_detail_fragment_image);
         return (view);
     }
     public void updateUI(Image mImage){
-        this.legend.setText(mImage.getLegend());
-        this.description.setText(mImage.getDescription());
+        //this.legend.setText(mImage.getLegend());
+        //this.description.setText(mImage.getDescription());
         Glide.with(this).load(mImage.getUrl()).into(image);
     }
 }

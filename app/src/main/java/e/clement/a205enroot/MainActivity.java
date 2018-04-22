@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             R.layout.ic_tab_sponsors
     };
 
-
+    // Jean-Marc henri jeremy l'anabaptiste
 
     // Tableau des mails à passer dans l'implicit intent
     protected String[] mails = {"foyart@et.esiea.fr","hanna@et.esiea.fr"};

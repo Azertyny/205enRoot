@@ -1,20 +1,147 @@
-<LinearLayout
-    android:id="@+id/fragment_page_maps_rootview"
+<LinearLayout android:id="@+id/fragment_page_maps_rootview"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="e.clement.a205enroot.MainActivity"
     android:gravity="center"
-    android:background="#EDD9CF">
+    android:background="#EDD9CF"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="ifContentScrolls"
         >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <TextView
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="50dp"
+            android:layout_weight="75"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="40"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="33"
+                    app:srcCompat="@drawable/event_trophy_1"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="10dp"
+                    />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="33"
+                    app:srcCompat="@drawable/event_trophy_2"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="10dp"
+                    />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="33"
+                    app:srcCompat="@drawable/event_trophy_3"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="10dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="60"
+                android:layout_margin="5dp"
+                android:paddingTop="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/event_intro"
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/event_titre1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/event_p1"
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/event_titre2"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/event_p2"
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/event_titre3"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/event_p3"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/event_titre4"
+                android:textSize="12sp"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:text="@string/event_p4"
+                android:textSize="12sp"
+                android:layout_margin="5dp"
+                />
+        </LinearLayout>
+        <!--
+        <TextView
         android:id="@+id/fragment_trophy_event_page_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,6 +152,7 @@
         android:textAlignment="center"
         android:text="Présentation du 205 Trophées"
     />
+    -->
 
     </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

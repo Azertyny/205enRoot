@@ -10,6 +10,7 @@ public class ImageDetailActivity extends AppCompatActivity {
 
     private ImageDetailFragment imageDetailFragment;
     public Toolbar toolbar;
+    public ActionBar ab;
     // Transfert par intent Extra de la position
     public static final String ITEM_IMAGE = "e.clement.a205enroot.ImageDetailActivity.ITEM_IMAGE";
 
@@ -29,7 +30,7 @@ public class ImageDetailActivity extends AppCompatActivity {
         // Set la Toolbar
         setSupportActionBar(toolbar);
         // Obtention d'un support ActionBar correspondant à cette Toolbar
-        ActionBar ab = getSupportActionBar();
+        ab = getSupportActionBar();
         // Rendre disponible le bouton Up
         ab.setDisplayHomeAsUpEnabled(false);
     }
@@ -56,11 +57,9 @@ public class ImageDetailActivity extends AppCompatActivity {
     private void updateDetailFragment() {
         Image images = getIntent().getParcelableExtra(ITEM_IMAGE);
         //Log.e(getClass().getSimpleName(),sponsors.getName() );
+        ab.setTitle(images.getLegend());
         imageDetailFragment.updateUI(images);
 
     }
-
-
-
 
 }
