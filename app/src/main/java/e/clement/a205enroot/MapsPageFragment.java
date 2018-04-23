@@ -62,7 +62,7 @@ public class MapsPageFragment extends android.support.v4.app.Fragment implements
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         excecuteHttpRetrofit();
-
+        Log.e("create","mapsView");
         return mapView;
     }
 

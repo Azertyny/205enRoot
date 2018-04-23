@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="e.clement.a205enroot.ImageDetailActivity"
-    android:background="@color/backgroundColor">
+    android:background="@android:color/black">
 
     <ImageView
         android:id="@+id/image_item_detail_fragment_image"

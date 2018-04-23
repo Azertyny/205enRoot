@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +24,14 @@ import io.reactivex.observers.DisposableObserver;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GalleryPageFragment extends Fragment {
+public class GalleryPageFragment extends android.support.v4.app.Fragment {
 
 
     @BindView(R.id.fragment_gallery_recycler_view) RecyclerView recyclerView; // 1 - Declare RecyclerView
     //@BindView(R.id.fragment_gallery_swipe_container) android.support.v4.widget.SwipeRefreshLayout swipeRefreshLayout;
     //SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.galleryIndeterminateBar)
+    ProgressBar progressBar;
 
     // Varaibles de gestion des données
     private DisposableObserver<List<Image>> disposable;
@@ -63,6 +66,7 @@ public class GalleryPageFragment extends Fragment {
         //this.configureSwipeRefreshLayout();
         this.configureOnclickRecyclerView();
 
+        Log.e("create","galleryView");
         // Inflate the layout for this fragment
         return galleryView;
     }
@@ -94,6 +98,7 @@ public class GalleryPageFragment extends Fragment {
     }
 
     private void excecuteHttpRetrofit() {
+        progressBar.setVisibility(View.VISIBLE);
         //this.updateUIWhenStartingHTTPRequest();
         String langue = this.getResources().getConfiguration().locale.getDisplayLanguage();
         String code;
@@ -150,6 +155,7 @@ public class GalleryPageFragment extends Fragment {
         images.clear();
         images.addAll(mImages);
         adapter.notifyDataSetChanged();
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

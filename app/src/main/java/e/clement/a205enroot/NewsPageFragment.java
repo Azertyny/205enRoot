@@ -35,13 +35,15 @@ import io.reactivex.observers.DisposableObserver;
 //      - SwipeRefreshLayout
 //      - Requête réseau
 // -------------------------------------------------------------------------------------------------
-public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listeners,*/{
+public class NewsPageFragment extends android.support.v4.app.Fragment /*implements MyAsyncTask.Listeners,*/{
 
     // Récupération de la RecyclerView dans le Layout et affectation à une variable
     @BindView(R.id.fragment_news_recycler_view) RecyclerView recyclerView;
     public NewsAdapter adapter;                                 // Adapteur pour la RecyclerView
     // Récupération du SwipeRefreshLayout dans le Layout et affectation à une variable
     @BindView(R.id.fragment_main_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
+
+    @BindView(R.id.newsIndeterminateBar) ProgressBar progressBar;
 
     // Variables de gestion des données récupérer sur le server
     private DisposableObserver<List<NewsArticles>> disposable;  // Observer de HttpStreams
@@ -67,10 +69,12 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
         ButterKnife.bind(this, view);
         // ...Appel des méthodes de configuration et initialisation des différents éléments du fragment :
 
+
         this.configureRecyclerView();
         this.excecuteHttpRetrofit();
         this.configureSwipeRefreshLayout();
         this.configureOnclickRecyclerView();
+        Log.e("create","newsView");
         return view;
     }
 
@@ -91,6 +95,7 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
     // NETWORK REQUEST
     // ---------------------------------------------------------------------------------------------
     private void excecuteHttpRetrofit() {
+        progressBar.setVisibility(View.VISIBLE);
         // Vérification de la langue utilisée sur le téléphone afin de faire la requête sur la BDD associée :
         String langue = this.getResources().getConfiguration().locale.getDisplayLanguage();
         String code;
@@ -105,6 +110,7 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
             public void onNext(List<NewsArticles> news){
                 Log.e("NEWS","On Next");
                 // Une fois la requête réseau effectuée, mise à jour de la RecyclerView :
+
                 updateUI(news);
             }
             @Override
@@ -118,6 +124,7 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
         });
     }
     private void updateUI(List<NewsArticles> articles){
+
         // Désactive la possibilité de rafraîchissment lors de la mis à jour des données :
         swipeRefreshLayout.setRefreshing(false);
         // Reset de la RecyclerView :
@@ -126,6 +133,7 @@ public class NewsPageFragment extends Fragment /*implements MyAsyncTask.Listener
         newsArticles.addAll(articles);
         // Notification à l'adapter du changement de données :
         adapter.notifyDataSetChanged();
+        progressBar.setVisibility(View.GONE);
     }
     // Méthodes de désinscription du stream lors de la destruction du fragment
     @Override

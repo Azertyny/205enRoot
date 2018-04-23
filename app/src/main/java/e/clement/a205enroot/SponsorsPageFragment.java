@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -24,12 +25,13 @@ import io.reactivex.observers.DisposableObserver;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SponsorsPageFragment extends Fragment {
+public class SponsorsPageFragment extends android.support.v4.app.Fragment {
 
     //RecyclerView recyclerView;
     @BindView(R.id.fragment_sponsors_recycler_view) RecyclerView recyclerView; // 1 - Declare RecyclerView
     @BindView(R.id.fragment_sponsors_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
-
+    @BindView(R.id.sponsorsIndeterminateBar)
+    ProgressBar progressBar;
 
     private DisposableObserver<List<SponsorsArticles>> disposable;
     private List<SponsorsArticles> sponsorsArticles;
@@ -58,7 +60,7 @@ public class SponsorsPageFragment extends Fragment {
         this.excecuteHttpRetrofit();
         this.configureSwipeRefreshLayout();
         this.configureOnclickRecyclerView();
-
+        Log.e("create","sponsorView");
         return sponsorsView;
     }
 
@@ -84,6 +86,7 @@ public class SponsorsPageFragment extends Fragment {
 
 
     private void excecuteHttpRetrofit() {
+        progressBar.setVisibility(View.VISIBLE);
         String langue = this.getResources().getConfiguration().locale.getDisplayLanguage();
         String code;
         if (langue.contentEquals("English")){
@@ -139,6 +142,7 @@ public class SponsorsPageFragment extends Fragment {
         sponsorsArticles.clear();
         sponsorsArticles.addAll(articles);
         adapter.notifyDataSetChanged();
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
