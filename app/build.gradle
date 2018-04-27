@@ -6,9 +6,12 @@ android {
         applicationId "e.clement.a205enroot"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        /*lintOptions {
+                abortOnError false
+        }*/
     }
     buildTypes {
         release {
