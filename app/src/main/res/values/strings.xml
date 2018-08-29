@@ -34,19 +34,19 @@
     <string name="event_titre3">Objectifs</string>
     <string name="event_p3">Retrouver l\'esprit des pionniers, retourner aux sources du voyage-aventure, redécouvrir les joies de l\'étape et goûter au charme des bivouacs étoilés. Entretenir le mythe de Peugeot en Afrique et poursuivre ses exploits, en défiant chaque année son sacré numéro. Apporter un soutien matériel à de petites associations marocaines ayant de grands besoins. Déjouer les difficultés liées aux irrégularités du terrain et passer la ligne d\'arrivée, grâce à la solidarité.</string>
     <string name="event_titre4">L\'édition 2019</string>
-    <string name="event_p4">Détails à venir...</string>
+    <string name="event_p4">La 12ème édition du 205 Trophée aura lieu du 8 au 18 Avril 2019, avec un parcours exceptionnel de 2700 km au Maroc !</string>
 
     <!-- 205 en ROOT -->
     <string name="root_titre1">Notre association</string>
     <string name="root_p1">205 en ROOT est une association loi 1901 à vocation humanitaire et sportive, créée le 21 Octobre 2017</string>
     <string name="root_p2">Le bureau de l\'association est composé de 2 membres :\n\t- Président : Clément FOYART\n\t- Trésorier : Mathias HANNA</string>
     <string name="root_titre2">Nos objectifs</string>
-    <string name="root_p3">En 2019, notre association se donne pour objectifs de :\n\t- Participer à la 12ème édition du raid humanitaire 205 TROPHEE courant Avril 2019 au Maroc\n\t- Récolter du matériel et l\'acheminer au Maroc afin de le distribuer à l\'association concernée</string>
+    <string name="root_p3">En 2019, notre association se donne pour objectifs de :\n\t- Participer à la 12ème édition du raid humanitaire 205 TROPHEE du 8 au 18 Avril 2019 au Maroc\n\t- Récolter du matériel et l\'acheminer au Maroc afin de le distribuer à l\'association "ASMOUNE"</string>
 
     <!-- L'humanitaire -->
     <string name="charity_titre1">Raid à vocation humanitaire</string>
-    <string name="charity_p1">Cette aventure va nous permettre d\'apporter de l\'aide aux personnes dans le besoin, souvent confrontées à des condition de vie difficiles. En effet, le 205 Trophée entretien cet engagement chaque année auprès d\'associations marocaines.</string>
-    <string name="charity_p2">Ces actions consistent le plus souvent à acheminer du matériel divers à ces associations tel que :\n\t- Des livres et fournitures scolaires\n\t- Des vêtements \n\t- Du matériel médical (Fauteuils roulants, béquilles...)\n\t- Du matériel numérique (Ordinateurs, écrans, imprimantes, tablettes...)\n\t- Et bien d\'autre...</string>
+    <string name="charity_p1">Cette aventure va nous permettre d\'apporter de l\'aide aux personnes dans le besoin, souvent confrontées à des conditions de vie difficiles. En effet, le 205 Trophée entretien cet engagement chaque année auprès d\'associations marocaines.</string>
+    <string name="charity_p2">Ces actions consistent le plus souvent à acheminer du matériel divers à ces associations tel que :\n\t- Des livres et fournitures scolaires\n\t- Des vêtements \n\t- Du matériel médical (Fauteuils roulants, béquilles...)\n\t- Du matériel numérique (Ordinateurs, écrans, imprimantes, tablettes...)\n\t- Et bien d\'autres...</string>
 
 
 
