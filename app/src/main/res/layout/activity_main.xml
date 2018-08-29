@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main_drawer_layout"
@@ -9,6 +11,7 @@
     android:orientation="vertical"
     tools:context="e.clement.a205enroot.MainActivity"
     tools:openDrawer="start">
+
 
     <!-- Racine MainActivity -->
     <LinearLayout
@@ -45,7 +48,9 @@
 
 
 
+
     </LinearLayout>
+
 
     <!-- Vue de navigation une fois déployée -->
     <android.support.design.widget.NavigationView
@@ -60,6 +65,7 @@
     <!--
         app:itemTextColor="@color/colorAccent"
     -->
+
 
 </android.support.v4.widget.DrawerLayout>
 

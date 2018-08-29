@@ -1,6 +1,7 @@
 package e.clement.a205enroot;
 
 import android.content.Intent;
+
 import android.content.pm.LabeledIntent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -12,6 +13,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,11 +31,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+
 import com.bumptech.glide.Glide;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import butterknife.BindView;
 
@@ -75,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected String[] mails = {"foyart@et.esiea.fr","hanna@et.esiea.fr"};
 
     // Lors de la création de l'activité ...
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // ...Appel des méthodes de configuration et initialisation des différents éléments de l'UI :
         // Configuration de la Toolbar :
         this.configureToolbar();
+
         // Configuration du Drawer Layout :
         this.configureDrawerLayout();
         // Configuration de la navigation View :
@@ -100,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         // Récupère le Layout du menu de la Toolbar et l'affiche
@@ -124,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
     // ---------------------------------------------------------------------------------------------
+
 
     // ---------------------------------------------------------------------------------------------
     // DRAWERLAYOUT
@@ -192,6 +201,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Initialise les icônes et leur gestion
         initialiseLayoutParams();
         setupTabIcons();
+
     }
     private void initialiseLayoutParams() {
         // Définit la taille des icônes en fonction de leur état
@@ -294,6 +304,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(i);
     }
 
+
     @Override
     public void onImageClicked(Image image){
         Log.e(getClass().getSimpleName(),"Image "+image.getLegend()+" sélectionnée.");
@@ -337,5 +348,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(!BackStackFragment.handleBackPressed(getSupportFragmentManager())){
             super.onBackPressed();
         }*/
+
 }
 
