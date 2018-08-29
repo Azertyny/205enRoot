@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">205enROOT</string>
+
+    <!-- Utilisé dans le navigation drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="cafe">Give us a cup of Tea ;)</string>
+    <string name="balise">Click on markers...</string>
+
+    <string name="trophee">The Event</string>
+    <string name="assoRoot">205 en ROOT</string>
+    <string name="assoMaroc">Charity</string>
+
+    <string name="jeu">To come ...</string>
+    <string name="preferences">Settings</string>
+    <string name="contact">Contact us</string>
+
+
+    <string name="news">News</string>
+    <string name="event">The Event</string>
+    <string name="gallery">Gallery</string>
+    <string name="map">Where is the 205 ?</string>
+    <string name="sponsors">Our Sponsors</string>
+
+
+    <!-- 205 Trophée -->
+    <string name="event_intro">The 205 Trophée is a humanitarian car raid, created and implemented by the agency ProRaids Organization, and specifically dedicated to the legendary Peugeot 205.</string>
+    <string name="event_titre1">The spirit</string>
+    <string name="event_p1">It is not a race but a real test of orientation without any notion of competition. It is a great human and sporting challenge that allows participants to satiate their thirst for open spaces, to go to the end of themselves, to discover Morocco differently and to meet its nice populations.</string>
+    <string name="event_titre2">The values</string>
+    <string name="event_p2">The event is entirely based on mutual aid and conviviality.</string>
+    <string name="event_titre3">Goals</string>
+    <string name="event_p3">Find the spirit of the pioneers, return to the sources of adventure-travel, rediscover the joys of the stage and taste the charm of stellar bivouacs. Maintain the myth of Peugeot in Africa and continue its exploits, defying every year its sacred number. Provide material support to small Moroccan associations with high needs. To overcome the difficulties related to the irregularities of the ground and to cross the finish line, thanks to the solidarity.</string>
+    <string name="event_titre4">2019 Edition</string>
+    <string name="event_p4">Details to come...</string>
+
+    <!-- 205 en ROOT -->
+    <string name="root_titre1">Our association</string>
+    <string name="root_p1">205 en ROOT is an association law 1901 with humanitarian and sporting vocation, created on October 21st, 2017</string>
+    <string name="root_p2">The office of the association is composed of 2 members: \n\t- President : Clément FOYART \n\t- Treasurer : Mathias HANNA</string>
+    <string name="root_titre2">Our goals</string>
+    <string name="root_p3">In 2019, our association aims for: \n \t- Participate in the 12th edition of the 205 TROPHEE humanitarian raid in April 2019 in Morocco \n \t- Collect material and send it to Morocco for distribution to the association concerned</string>
+
+    <!-- L'humanitaire -->
+    <string name="charity_titre1">Humanitarian Raid</string>
+    <string name="charity_p1">This adventure will allow us to provide help to people in need, often faced with difficult living conditions. Indeed, the 205 Trophée entretiencet engagement each year with Moroccan associations.</string>
+    <string name="charity_p2">These actions most often consist in transporting various materials to these associations such as: \n\t- Books and school supplies \n\t- Clothes \n\t- Medical equipment (Wheelchairs, crutches ... ) \n\t- Digital equipment (Computers, screens, printers, tablets ...) \n\t- And many others ...</string>
+
+
+
+</resources>

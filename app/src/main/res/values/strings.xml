@@ -4,4 +4,50 @@
     <!-- Utilisé dans le navigation drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+
+    <string name="cafe">Offrez-nous un café ;)</string>
+    <string name="balise">Cliquez sur les balises...</string>
+
+    <string name="trophee">205 Trophée</string>
+    <string name="assoRoot">205 en ROOT</string>
+    <string name="assoMaroc">L\'humanitaire</string>
+
+    <string name="jeu">À venir ...</string>
+    <string name="preferences">Préférences</string>
+    <string name="contact">Nous contacter</string>
+
+    <string name="news">Actualités</string>
+    <string name="event">L\'événement</string>
+    <string name="gallery">Galerie</string>
+    <string name="map">Où est la 205 ?</string>
+    <string name="sponsors">Nos Partenaires</string>
+
+
+    <!-- 205 Trophée -->
+    <string name="event_intro">Le 205 Trophée est un raid automobile à vocation humanitaire, créé et mis en place par l’agence ProRaids Organisation, et spécialement dédié à la légendaire Peugeot 205.</string>
+    <string name="event_titre1">L\'esprit</string>
+    <string name="event_p1">Il ne s\’agit pas d\’une course mais d\’une véritable épreuve d\’orientation sans aucune notion de compétition. C\’est un grand défi humain et sportif qui permet aux participants de rassasier leur soif de grands espaces, d\'aller au bout d\'eux-mêmes, de découvrir le Maroc autrement et de rencontrer ses populations chaleureuses.</string>
+    <string name="event_titre2">Les valeurs</string>
+    <string name="event_p2">L\’événement est entièrement basé sur l\’entraide et la convivialité.</string>
+    <string name="event_titre3">Objectifs</string>
+    <string name="event_p3">Retrouver l\'esprit des pionniers, retourner aux sources du voyage-aventure, redécouvrir les joies de l\'étape et goûter au charme des bivouacs étoilés. Entretenir le mythe de Peugeot en Afrique et poursuivre ses exploits, en défiant chaque année son sacré numéro. Apporter un soutien matériel à de petites associations marocaines ayant de grands besoins. Déjouer les difficultés liées aux irrégularités du terrain et passer la ligne d\'arrivée, grâce à la solidarité.</string>
+    <string name="event_titre4">L\'édition 2019</string>
+    <string name="event_p4">Détails à venir...</string>
+
+    <!-- 205 en ROOT -->
+    <string name="root_titre1">Notre association</string>
+    <string name="root_p1">205 en ROOT est une association loi 1901 à vocation humanitaire et sportive, créée le 21 Octobre 2017</string>
+    <string name="root_p2">Le bureau de l\'association est composé de 2 membres :\n\t- Président : Clément FOYART\n\t- Trésorier : Mathias HANNA</string>
+    <string name="root_titre2">Nos objectifs</string>
+    <string name="root_p3">En 2019, notre association se donne pour objectifs de :\n\t- Participer à la 12ème édition du raid humanitaire 205 TROPHEE courant Avril 2019 au Maroc\n\t- Récolter du matériel et l\'acheminer au Maroc afin de le distribuer à l\'association concernée</string>
+
+    <!-- L'humanitaire -->
+    <string name="charity_titre1">Raid à vocation humanitaire</string>
+    <string name="charity_p1">Cette aventure va nous permettre d\'apporter de l\'aide aux personnes dans le besoin, souvent confrontées à des condition de vie difficiles. En effet, le 205 Trophée entretien cet engagement chaque année auprès d\'associations marocaines.</string>
+    <string name="charity_p2">Ces actions consistent le plus souvent à acheminer du matériel divers à ces associations tel que :\n\t- Des livres et fournitures scolaires\n\t- Des vêtements \n\t- Du matériel médical (Fauteuils roulants, béquilles...)\n\t- Du matériel numérique (Ordinateurs, écrans, imprimantes, tablettes...)\n\t- Et bien d\'autre...</string>
+
+
+
 </resources>

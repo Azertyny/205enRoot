@@ -1,0 +1,32 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="e.clement.a205enroot.ImageDetailActivity"
+    android:background="@android:color/black">
+
+    <ImageView
+        android:id="@+id/image_item_detail_fragment_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+<!--
+    <TextView
+        android:id="@+id/image_item_detail_fragment_name"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:textColor="#c92020"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/image_item_detail_fragment_description"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="60"
+        android:textColor="#c92020"
+        android:textSize="20sp"/>
+-->
+</LinearLayout>

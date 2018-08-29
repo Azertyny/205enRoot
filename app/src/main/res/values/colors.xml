@@ -3,4 +3,17 @@
     <color name="colorPrimary">#bbbbc4</color>
     <color name="colorPrimaryDark">#38383b</color>
     <color name="colorAccent">#f46721</color>
+    <color name="colorAccentOpacityLess">#d4f46721</color>
+    <color name="colorAccentDisabled">#ec9b73</color>
+    <color name="backgroundColor">#EDD9CF</color>
+    <!-- Array of colors that will be used by ViewPager as background colors -->
+    <array name="colorPagesViewPager">
+        <item>#EDD9CF</item>
+        <item>#EDD9CF</item>
+        <item>#EDD9CF</item>
+        <item>#EDD9CF</item>
+        <item>#EDD9CF</item>
+    </array>
+
+
 </resources>

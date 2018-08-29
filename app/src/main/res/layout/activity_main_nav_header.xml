@@ -3,15 +3,37 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:background="@color/colorPrimary"
-    android:gravity="center"
-    android:orientation="vertical">
+
+    android:layout_height="wrap_content"
+
+    android:gravity="bottom"
+    android:orientation="vertical"
+
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    >
 <!-- Créer un fichier dimen.xml dans /res/values -->
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/logo_205_trophee_2018"/>
+        android:layout_width="match_parent"
+        android:layout_height="176dp"
+        android:layout_gravity="start"
+        app:srcCompat="@drawable/p205_trophee_nav_drawer_cover"
+        android:scaleType="centerCrop"/>
+    <!--
+    android:background="@drawable/p205_trophee_nav_drawer_cover"
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="205 en Root"
+            android:textStyle="bold"/>
+    -->
+        <!--
+            <TextView
+            android:text="205 en Root"
+            android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+                -->
 
 </LinearLayout>

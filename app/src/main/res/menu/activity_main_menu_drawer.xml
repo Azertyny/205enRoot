@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/activity_main_drawer_games"
+        android:icon="@drawable/ic_videogame_asset_black_24dp"
+        android:title="@string/jeu"
+        android:enabled="false"
+        app:itemTextColor="@color/colorAccentDisabled"/>
+
+    <item
+        android:id="@+id/activity_main_drawer_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/preferences"
+        android:enabled="false"
+        app:itemTextColor="@color/colorAccentDisabled"/>
+
+    <item
+        android:id="@+id/activity_main_drawer_contact"
+        android:icon="@drawable/ic_perm_contact_calendar_black_24dp"
+        android:title="@string/contact"
+        app:itemTextColor="@color/colorAccent"/>
+
+
+    <!--
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/activity_main_drawer_games"
             android:icon="@drawable/ic_videogame_asset_black_24dp"
-            android:title="Mini-jeux"
-            />
+
+            android:title="Mini-jeux"/>
+
     </group>
 
     <item android:title="Autres">
@@ -26,5 +51,7 @@
             </group>
         </menu>
     </item>
+
+ -->
 
 </menu>
